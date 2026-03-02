@@ -38,7 +38,6 @@
   libthai,
   libdatrie,
   pixman,
-  graphite,
   util-linux,
   pcre2,
   stdenv,
@@ -125,7 +124,6 @@ let
     libthai
     libdatrie
     pixman
-    graphite
     util-linux
     pcre2
   ];
