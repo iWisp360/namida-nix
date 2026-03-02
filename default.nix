@@ -157,6 +157,10 @@ stdenv.mkDerivation {
     ln -s ${audiowaveform}/bin/audiowaveform $out/bin/audiowaveform
     ln -s ${ffmpeg}/bin/ffprobe $out/bin/ffprobe
     ln -s ${ffmpeg}/bin/ffmpeg $out/bin/ffmpeg
+    mkdir -p $out/share/icons/hicolor/{128x128,256x256,512x512}/apps
+    mv $out/share/icons/namida_128.png $out/share/icons/hicolor/128x128/apps/namida.png
+    mv $out/share/icons/namida_256.png $out/share/icons/hicolor/256x256/apps/namida.png
+    mv $out/share/icons/namida_512.png $out/share/icons/hicolor/512x512/apps/namida.png
     runHook postInstall
   '';
 
