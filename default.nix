@@ -68,7 +68,22 @@
 let
   build-date = "260225164";
   version = "5.7.8-beta";
-  libs = [
+in
+stdenv.mkDerivation rec {
+  name = "namida";
+  inherit version;
+  src = fetchurl {
+    url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${build-date}/namida-v${version}.linux.tar.gz";
+    hash = "sha256-g6csh0n32zlkTFGfqsm9cCYt9JYSWglRUtJoXJMXsVw=";
+  };
+
+  nativeBuildInputs = [
+    autoPatchelfHook
+    wrapGAppsHook3
+    makeWrapper
+  ];
+
+  buildInputs = [
     gtk3
     pango
     cairo
@@ -127,22 +142,6 @@ let
     util-linux
     pcre2
   ];
-in
-stdenv.mkDerivation {
-  name = "namida";
-  inherit version;
-  src = fetchurl {
-    url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${build-date}/namida-v${version}.linux.tar.gz";
-    hash = "sha256-g6csh0n32zlkTFGfqsm9cCYt9JYSWglRUtJoXJMXsVw=";
-  };
-
-  nativeBuildInputs = [
-    autoPatchelfHook
-    wrapGAppsHook3
-    makeWrapper
-  ];
-
-  buildInputs = libs;
 
   sourceRoot = ".";
 
@@ -152,7 +151,7 @@ stdenv.mkDerivation {
     cp * $out -rv
     rm -r $out/bin/*
     mv namida $out
-    wrapProgram $out/namida --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath libs}"
+    wrapProgram $out/namida --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath buildInputs}"
     ln -s $out/namida $out/bin/namida
     ln -s ${audiowaveform}/bin/audiowaveform $out/bin/audiowaveform
     ln -s ${ffmpeg}/bin/ffprobe $out/bin/ffprobe
@@ -167,10 +166,16 @@ stdenv.mkDerivation {
   meta = {
     description = "A Beautiful and Feature-rich Music & Video Player with Youtube Support, Built in Flutter";
     homepage = "https://github.com/namidaco/namida";
+    sourceProvenance = lib.sourceTypes.binaryNativeCode;
+    mainProgram = "namida";
+    maintainers = with lib.maintainers; [
+      iwisp360
+    ];
+
     license = {
-      shortName = "Namida EULA";
+      shortName = "EULA";
       url = "https://github.com/namidaco/namida/blob/main/README.md";
-      fullName = "Namida End User License Agreement (EULA)";
+      fullName = "End User License Agreement";
       free = false;
       redistributable = false;
     };
