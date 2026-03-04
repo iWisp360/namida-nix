@@ -1,69 +1,12 @@
 {
-  freetype,
-  bzip2,
-  audiowaveform,
-  ffmpeg,
-  libpng,
-  brotli,
-  fontconfig,
-  expat,
-  fribidi,
-  libepoxy,
-  libxi,
-  libxext,
-  libxau,
-  libxdmcp,
-  dbus,
-  systemdLibs,
-  libcloudproviders,
-  tinysparql,
-  json-glib,
-  libxml2,
-  icu,
-  sqlite,
-  libxfixes,
-  wayland,
-  libffi,
-  libxcursor,
-  libxrender,
-  libxdamage,
-  libxcomposite,
-  libxrandr,
-  libxinerama,
-  zlib,
-  libglycin,
-  lcms2,
-  libseccomp,
-  atk,
-  libthai,
-  libdatrie,
-  pixman,
-  util-linux,
-  pcre2,
   stdenv,
   fetchurl,
   autoPatchelfHook,
-  gtk3,
-  pango,
-  cairo,
-  at-spi2-core,
-  glib,
-  gdk-pixbuf,
-  harfbuzz,
-  mpv,
   wrapGAppsHook3,
   makeWrapper,
-  mesa,
-  libX11,
-  flac,
-  libvorbis,
-  pipewire,
-  libGL,
-  libglvnd,
-  lib,
-  libxcb,
-  libxv,
-  libxkbcommon,
+  audiowaveform,
+  ffmpeg,
+  mpv-unwrapped,
 }:
 let
   build-date = "260225164";
@@ -84,63 +27,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    gtk3
-    pango
-    cairo
-    at-spi2-core
-    glib
-    mpv
-    gdk-pixbuf
-    harfbuzz
-    mesa
-    libX11
-    libxcb
-    libxv
-    flac
-    libvorbis
-    libGL
-    libglvnd
-    pipewire
-    libxkbcommon
-    freetype
-    bzip2
-    libpng
-    brotli
-    fontconfig
-    expat
-    fribidi
-    libepoxy
-    libxi
-    libxext
-    libxau
-    libxdmcp
-    dbus
-    systemdLibs
-    libcloudproviders
-    tinysparql
-    json-glib
-    libxml2
-    icu
-    sqlite
-    libxfixes
-    wayland
-    libffi
-    libxcursor
-    libxrender
-    libxdamage
-    libxcomposite
-    libxrandr
-    libxinerama
-    zlib
-    libglycin
-    lcms2
-    libseccomp
-    atk
-    libthai
-    libdatrie
-    pixman
-    util-linux
-    pcre2
+    mpv-unwrapped
   ];
 
   sourceRoot = ".";
@@ -151,7 +38,6 @@ stdenv.mkDerivation rec {
     cp * $out -rv
     rm -r $out/bin/*
     mv namida $out
-    wrapProgram $out/namida --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath buildInputs}"
     ln -s $out/namida $out/bin/namida
     ln -s ${audiowaveform}/bin/audiowaveform $out/bin/audiowaveform
     ln -s ${ffmpeg}/bin/ffprobe $out/bin/ffprobe
@@ -166,11 +52,11 @@ stdenv.mkDerivation rec {
   meta = {
     description = "A Beautiful and Feature-rich Music & Video Player with Youtube Support, Built in Flutter";
     homepage = "https://github.com/namidaco/namida";
-    sourceProvenance = lib.sourceTypes.binaryNativeCode;
+    # sourceProvenance = lib.sourceTypes.binaryNativeCode;
     mainProgram = "namida";
-    maintainers = with lib.maintainers; [
-      iwisp360
-    ];
+    #maintainers = with lib.maintainers; [
+    #  iwisp360
+    #];
 
     license = {
       shortName = "EULA";
