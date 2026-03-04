@@ -7,6 +7,14 @@
   audiowaveform,
   ffmpeg,
   mpv-unwrapped,
+  cairo,
+  gdk-pixbuf,
+  gtk3,
+  libz,
+  pango,
+  harfbuzz,
+  libcxx,
+  dbus,
 }:
 let
   build-date = "260225164";
@@ -28,6 +36,14 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     mpv-unwrapped
+    cairo
+    gdk-pixbuf
+    gtk3
+    dbus
+    libz
+    pango
+    harfbuzz
+    libcxx
   ];
 
   sourceRoot = ".";
