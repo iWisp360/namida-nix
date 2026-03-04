@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
+  inputs.nixpkgs.url = "nixpkgs/nixos-25.11";
 
   outputs =
     { nixpkgs, ... }:
