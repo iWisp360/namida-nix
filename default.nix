@@ -17,15 +17,15 @@
   dbus,
 }:
 let
-  build-date = "260225164";
-  version = "5.7.8-beta";
+  buildId = "260213222";
+  version = "5.7.2-beta";
 in
 stdenv.mkDerivation rec {
   name = "namida";
   inherit version;
   src = fetchurl {
-    url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${build-date}/namida-v${version}.linux.tar.gz";
-    hash = "sha256-g6csh0n32zlkTFGfqsm9cCYt9JYSWglRUtJoXJMXsVw=";
+    url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildId}/namida-v${version}.linux.tar.gz";
+    hash = "sha256-/4YfGraIYUWBdqR9GKCfIXQXRK/ncNjQL06BfGUbLlg=";
   };
 
   nativeBuildInputs = [
