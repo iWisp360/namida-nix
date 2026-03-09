@@ -10,10 +10,11 @@ let
 in
 {
   options.programs.namida = {
-    enable = lib.mkEnableOption "Namida";
+    enable = lib.mkEnableOption "Whether to enable namida";
     package = inputs.namida.packages.${pkgs.stdenv.hostPlatform.system}.default { };
     settings = {
       type = lib.types.attrs;
+      enable = lib.mkEnableOption "Whether to configure Namida through home manager";
       default = rec {
         directoriesToScan = [
           {
@@ -423,6 +424,8 @@ in
   config = lib.mkIf cfg.enable {
     home = {
       packages = [ cfg.package ];
+    }
+    // lib.mkIf cfg.settings.enable {
       file.".namida/namida_settings.json".text = builtins.toJSON cfg.settings;
     };
   };
