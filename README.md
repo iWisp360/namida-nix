@@ -42,6 +42,11 @@ module for configuration if you want to.
 
 ## Configuration
 
+> [!WARNING]
+> Don't configure namida through this flake yet! It is still WIP, and some
+> settings needs to be moved away from the namida settings file, I already asked
+> the dev to do so.
+
 To configure namida with the home manager module, follow these steps:
 
 1. Set programs.namida.settings.enable to true
