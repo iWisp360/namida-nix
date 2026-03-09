@@ -11,7 +11,14 @@
       };
     in
     {
+      homeManagerModules.namida =
+        { config, ... }:
+        import ./module.nix {
+          inherit config;
+          inherit (nixpkgs) lib;
+          inherit pkgs;
+        };
+
       packages.${system}.default = pkgs.callPackage ./default.nix { };
-      homeManagerModules.namida = ./module.nix;
     };
 }

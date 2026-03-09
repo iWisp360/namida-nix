@@ -15,6 +15,7 @@
   harfbuzz,
   libcxx,
   dbus,
+  ...
 }:
 let
   buildId = "260213222";

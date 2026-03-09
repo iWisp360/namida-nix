@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 let
@@ -11,9 +10,8 @@ in
 {
   options.programs.namida = {
     enable = lib.mkEnableOption "Whether to enable namida";
-    package = inputs.namida.packages.${pkgs.stdenv.hostPlatform.system}.default { };
+    package = pkgs.callPackage ./default.nix { inherit (pkgs.stdenv.hostPlatform) system; };
     settings = {
-      type = lib.types.attrs;
       enable = lib.mkEnableOption "Whether to configure Namida through home manager";
       default = rec {
         directoriesToScan = [
