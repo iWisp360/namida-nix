@@ -38,7 +38,15 @@ module for configuration if you want to.
 > [!NOTE]
 > A package is also offered, if you want just the package, you may want to add
 > to your home.packages or environment.systemPackages the package
-> `inputs.namida.packages.${system}.default`
+> `inputs.namida.packages.${system}.default`, or if you aren't using flakes at
+> all, you can add this to your packages
+>
+> ```nix
+> (import (builtins.fetchGit { 
+>   url = "https://codeberg.org/iWisp360/namida-nix"; 
+>   rev = "9a1075800ab322c054debf990e8b82031c84bc39"; # latest revision where nix/default.nix got modified
+>  }))
+> ```
 
 ## Configuration
 
