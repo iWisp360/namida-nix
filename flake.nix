@@ -19,6 +19,6 @@
           inherit pkgs;
         };
 
-      packages.${system}.default = pkgs.callPackage ./nix/default.nix { };
+      packages.${system}.default = pkgs.callPackage ./default.nix { };
     };
 }
