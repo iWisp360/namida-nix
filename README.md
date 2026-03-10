@@ -72,7 +72,7 @@ To configure namida with the home manager module, follow these steps:
    ```
 
    > [!NOTE]
-   > See [this document](docs.md) to know the available options for
+   > See [docs.md](docs.md) to know the available options for
    > programs.namida.settings
 
 ## Credits
