@@ -218,7 +218,7 @@ in
             canAskForBatteryOptimizations = false;
             useMediaStore = false;
             #################################
-            inherit language;
+            # appearance related options
             themeMode = appearance.mode;
             inherit (appearance) pitchblack;
             inherit (appearance) autoColor;
@@ -227,6 +227,8 @@ in
             # static colors use a strange format and the hash needs to be converted to it
             inherit (appearance) animatedTheme;
             enableBlurEffect = appearance.blur;
+
+            # indexer related options
             inherit (indexer) respectNoMedia;
             includeVideos = indexer.indexVideos;
             indexMinFileSizeInB = indexer.minimumFileSize;
@@ -242,6 +244,9 @@ in
             directoriesToExclude = indexer.folders.exclude;
             preventDuplicatedTracks = indexer.preventDuplicates;
             extractFeatArtistFromTitle = indexer.featuredArtistsFromTitle;
+
+            # misc options
+            inherit language;
             # libraryTabs = ;
             # homePageItems = ;
             # activeArtistType = ;
