@@ -1,6 +1,6 @@
 {
-  mkOption,
   types,
+  mkOption,
   mkEnableOption,
 }:
 mkOption {

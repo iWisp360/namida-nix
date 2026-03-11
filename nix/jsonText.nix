@@ -47,7 +47,7 @@ builtins.toJSON {
   extractFeatArtistFromTitle = indexer.featuredArtistsFromTitle;
 
   # misc options
-  inherit language;
+  language.code = language;
   # libraryTabs = ;
   # homePageItems = ;
   # activeArtistType = ;

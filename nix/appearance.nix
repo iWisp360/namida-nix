@@ -6,7 +6,6 @@
 mkOption {
   type = types.submodule {
     options = {
-      blur = mkEnableOption "Whether to enable blur";
       mode = mkOption {
         type = types.strMatching "(dark|light|system)";
       };
