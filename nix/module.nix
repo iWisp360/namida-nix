@@ -12,7 +12,7 @@ in
     enable = mkEnableOption "Whether to enable namida";
     package = mkOption {
       type = types.package;
-      default = pkgs.callPackage ./default.nix { };
+      default = pkgs.callPackage ../default.nix { };
       description = "Namida package to use";
     };
 
