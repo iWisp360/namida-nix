@@ -36,13 +36,21 @@ in
       };
 
       type = types.submodule {
-        config = import ./config.nix;
+        # config = import ./config.nix { inherit cfg; };
         options = {
           enable = mkEnableOption "Whether to configure Namida through home manager";
-          appearance = import ./appearance.nix;
-          playback = import ./playback.nix;
-          indexer = import ./indexer.nix;
-          language = import ./language.nix;
+          appearance = import ./appearance.nix { inherit types mkOption mkEnableOption; };
+          playback = import ./playback.nix { inherit types mkOption mkEnableOption; };
+          indexer = import ./indexer.nix {
+            inherit
+              types
+              mkOption
+              mkEnableOption
+              config
+              ;
+          };
+
+          language = import ./language.nix { inherit types mkOption mkEnableOption; };
         };
       };
     };
@@ -52,7 +60,7 @@ in
     home = {
       packages = [ cfg.package ];
       file.".namida/namida_settings.json" = lib.mkIf cfg.settings.enable {
-        text = import ./jsonText.nix;
+        text = import ./jsonText.nix { inherit cfg lib; };
       };
     };
   };

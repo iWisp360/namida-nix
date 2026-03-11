@@ -1,4 +1,4 @@
-{ mkOption, types }:
+{ mkOption, types, ... }:
 mkOption {
   default = "en";
   type = types.enum [
