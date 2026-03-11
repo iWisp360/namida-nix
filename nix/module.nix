@@ -37,7 +37,6 @@ in
 
       type = types.submodule {
         config = import ./config.nix;
-
         options = {
           enable = mkEnableOption "Whether to configure Namida through home manager";
           appearance = import ./appearance.nix;
