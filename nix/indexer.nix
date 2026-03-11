@@ -62,8 +62,8 @@ mkOption {
       };
 
       albumIdentifiers = mkOption {
-        type = types.listOf types.strMatching "(albumName|year|albumArtist)";
-        default = [ ];
+        type = types.listOf (types.strMatching "(albumName|year|albumArtist)");
+        default = [ "albumName" ];
         description = "Elements to identify albums";
       };
 
