@@ -22,12 +22,12 @@ builtins.toJSON {
   #################################
   # appearance related options
   themeMode = appearance.mode;
-  inherit (appearance) pitchblack;
+  inherit (appearance) pitchBlack;
   inherit (appearance) autoColor;
   staticColor = hexToInt32Argb (lib.toLower appearance.staticColors.light);
   staticColorDark = hexToInt32Argb (lib.toLower appearance.staticColors.dark);
   inherit (appearance) animatedTheme;
-  enableBlurEffect = appearance.blur;
+  enableBlurEffect = customization.blur;
 
   # indexer related options
   inherit (indexer) respectNoMedia;

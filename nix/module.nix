@@ -50,6 +50,8 @@ in
               ;
           };
 
+          customization = import ./customization.nix { inherit types mkOption mkEnableOption; };
+
           language = import ./language.nix { inherit types mkOption mkEnableOption; };
         };
       };
