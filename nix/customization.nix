@@ -11,7 +11,13 @@ mkOption {
       parallax = mkEnableOption "Whether to enable parallax";
       time12h = mkEnableOption "Whether to display time in 12h format";
       dateTimeFormat = mkOption {
-        type = types.strMatching "^(?=(?:[^d]*d){0,2}[^d]*$)(?=(?:[^M]*M){0,4}[^M]*$)(?=(?:[^y]*y){0,4}[^y]*$).+$"; # 🤮
+        type =
+          let
+            dayLimit = "(?=(?:[^d]*d){0,2}[^d]*$)";
+            monthLimit = "(?=(?:[^M]*M){0,4}[^M]*$)";
+            yearLimit = "(?=(?:[^y]*y){0,4}[^y]*$)";
+          in
+          types.strMatching "^${dayLimit}${monthLimit}${yearLimit}.+$";
         default = "MMM yyyy";
         description = "Format for displaying date and time";
       };
@@ -85,7 +91,6 @@ mkOption {
                 options =
                   let
                     actions = [
-                      "playafter"
                       "openinfo"
                       "none"
                       "playnext"
