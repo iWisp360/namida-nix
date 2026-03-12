@@ -15,6 +15,7 @@
   harfbuzz,
   libcxx,
   dbus,
+  lib,
 }:
 let
   buildId = "260213222";
@@ -68,11 +69,11 @@ stdenv.mkDerivation rec {
   meta = {
     description = "A Beautiful and Feature-rich Music & Video Player with Youtube Support, Built in Flutter";
     homepage = "https://github.com/namidaco/namida";
-    # sourceProvenance = lib.sourceTypes.binaryNativeCode;
+    sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
     mainProgram = "namida";
-    #maintainers = with lib.maintainers; [
-    #  iwisp360
-    #];
+    maintainers = with lib.maintainers; [
+      iwisp360
+    ];
 
     license = {
       shortName = "EULA";
