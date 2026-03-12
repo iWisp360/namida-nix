@@ -5,7 +5,20 @@ module for configuration if you want to.
 
 ## Installation
 
-1. Add to your flake inputs
+> [!NOTE]
+> These steps assume you already set up home manager with flakes and you are
+> ready to import modules to your `home.nix`, if you already didn't do so,
+> checkout
+> [these docs](https://nix-community.github.io/home-manager/index.xhtml#ch-nix-flakes)
+
+1. Enable unfree nixpkgs
+
+   ```nix
+   # configuration.nix
+   nixpkgs.config.allowUnfree = true;
+   ```
+
+2. Add to your flake inputs
 
    ```nix
    # flake.nix
@@ -17,7 +30,7 @@ module for configuration if you want to.
    };
    ```
 
-2. Import the home manager module
+3. Import the home manager module
 
    ```nix
    # home.nix
@@ -26,7 +39,7 @@ module for configuration if you want to.
    ];
    ```
 
-3. Enable namida
+4. Enable namida
 
    ```nix
    # home.nix
