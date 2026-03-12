@@ -96,6 +96,7 @@ To configure namida with the home manager module, follow these steps:
 All the credits for Namida goes to original author.
 
 > [!IMPORTANT]
-> Although this flake is licensed under the terms of the GPL, Namida isn't, see
+> Although this flake is licensed under the terms of the
+> [GPL-3.0-only](./LICENSE.md), Namida isn't, see
 > [Namida's license](https://github.com/namidaco/namida/blob/main/LICENSE) to
 > know more.
