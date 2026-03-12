@@ -1,6 +1,18 @@
 { cfg, lib }:
 let
   pow2 = num: if num == 0 then 1 else 2 * pow2 (num - 1);
+  baseConfiguration =
+    with cfg.settings;
+    import ./jsonAttrset.nix {
+      inherit
+        hexToInt32Argb
+        lib
+        appearance
+        customization
+        indexer
+        language
+        ;
+    };
   bitShiftLeft = num: positions: num * pow2 positions;
   hexToInt32Argb =
     hex:
@@ -14,179 +26,11 @@ let
       builtins.bitOr (bitShiftLeft r 16) (builtins.bitOr (bitShiftLeft g 8) b)
     );
 in
-with cfg.settings;
-builtins.toJSON {
-  ## Unavailable values on linux ##
-  canAskForBatteryOptimizations = false;
-  useMediaStore = false;
-  #################################
-  # appearance related options
-  themeMode = appearance.mode;
-  inherit (appearance) pitchBlack;
-  inherit (appearance) autoColor;
-  staticColor = hexToInt32Argb (lib.toLower appearance.staticColors.light);
-  staticColorDark = hexToInt32Argb (lib.toLower appearance.staticColors.dark);
-  inherit (appearance) animatedTheme;
-  enableBlurEffect = customization.blur;
-
-  # indexer related options
-  inherit (indexer) respectNoMedia;
-  includeVideos = indexer.indexVideos;
-  indexMinFileSizeInB = indexer.minimumFileSize;
-  indexMinDurationInSec = indexer.minimumTrackDuration;
-  inherit (indexer) albumIdentifiers;
-  trackArtistsSeparators = indexer.artistsSeparators;
-  trackGenresSeparators = indexer.genresSeparators;
-  inherit (indexer) refreshOnStartup;
-  cacheArtworks = indexer.artworkCache.enable;
-  uniqueArtworkHash = indexer.artworkCache.artworkHash;
-  inherit (indexer.artworkCache) groupArtworksByAlbum;
-  directoriesToScan = indexer.folders.include;
-  directoriesToExclude = indexer.folders.exclude;
-  preventDuplicatedTracks = indexer.preventDuplicates;
-  extractFeatArtistFromTitle = indexer.featuredArtistsFromTitle;
-
-  # misc options
-  language.code = language;
-  # libraryTabs = ;
-  # homePageItems = ;
-  # activeArtistType = ;
-  # activeSearchMediaTypes = ;
-  # borderRadiusMultiplier = ;
-  # fontScaleFactor = ;
-  # artworkCacheHeightMultiplier = ;
-  # trackThumbnailSizeinList = ;
-  # trackListTileHeight = ;
-  # albumThumbnailSizeinList = ;
-  # albumListTileHeight = ;
-  # displayTrackNumberinAlbumPage = ;
-  # albumCardTopRightDate = ;
-  # forceSquaredTrackThumbnail = ;
-  # forceSquaredAlbumThumbnail = ;
-  # useAlbumStaggeredGridView = ;
-  # useSettingCollapsedTiles = ;
-  # mediaGridCounts = ;
-  # activeAlbumTypes = ;
-  # activeTrSearch = ;
-  # enableGlowEffect = ;
-  # enableGlowBehindVideo = ;
-  # hourFormat12 = ;
-  # dateTimeFormat = ;
-  # trackArtistsSeparatorsBlacklist = ;
-  # trackGenresSeparatorsBlacklist = ;
-  # extensionsBlacklist = ;
-  # fileBrowserSort = ;
-  # fileBrowserSortReversed = ;
-  # tracksSortSearch = ;
-  # tracksSortSearchReversed = ;
-  # tracksSortSearchIsAuto = ;
-  # albumSort = ;
-  # albumSortReversed = ;
-  # artistSort = ;
-  # artistSortReversed = ;
-  # genreSort = ;
-  # genreSortReversed = ;
-  # playlistSort = ;
-  # playlistSortReversed = ;
-  # ytPlaylistSort = ;
-  # ytPlaylistSortReversed = ;
-  # trackSearchFilter = ;
-  # ignoreCommonPrefixForTypes = ;
-  # commonPrefixes = ;
-  # playlistSearchFilter = ;
-  # defaultBackupLocation_v2 = ;
-  # autoBackupIntervalDays = ;
-  # defaultFolderStartupLocation = ;
-  # defaultFolderStartupLocationVideos = ;
-  # enableFoldersHierarchy = ;
-  # enableFoldersHierarchyTracks = ;
-  # enableFoldersHierarchyVideos = ;
-  # displayArtistBeforeTitle = ;
-  # heatmapListensView = ;
-  # reverseListensView = ;
-  # backupItemslist_v2 = ;
-  # enableVideoPlayback = ;
-  # enableLyrics = ;
-  # lyricsSource = ;
-  # videoPlaybackSource = ;
-  # youtubeVideoQualities = ;
-  # animatingThumbnailScaleMultiplier = ;
-  # animatingThumbnailIntensity = ;
-  # animatingThumbnailIntensityLyrics = ;
-  # animatingThumbnailIntensityMinimized = ;
-  # animatingThumbnailInversed = ;
-  # enablePartyModeInMiniplayer = ;
-  # enablePartyModeColorSwap = ;
-  # enableMiniplayerParticles = ;
-  # enableMiniplayerParallaxEffect = ;
-  # forceMiniplayerTrackColor = ;
-  # isTrackPlayedSecondsCount = ;
-  # isTrackPlayedPercentageCount = ;
-  # waveformTotalBars = ;
-  # videosMaxCacheInMB = ;
-  # audiosMaxCacheInMB = ;
-  # imagesMaxCacheInMB = ;
-  # hideStatusBarInExpandedMiniplayer = ;
-  # displayFavouriteButtonInNotification = ;
-  # displayStopButtonInNotification = ;
-  # enableSearchCleanup = ;
-  # enableBottomNavBar = ;
-  # displayAudioInfoMiniplayer = ;
-  # showUnknownFieldsInTrackInfoDialog = ;
-  # enableM3USync = ;
-  # enableM3USyncStartup = ;
-  # prioritizeEmbeddedLyrics = ;
-  # swipeableDrawer = ;
-  # dismissibleMiniplayer = ;
-  # enableClipboardMonitoring = ;
-  # artworkGestureDoubleTapLRC = ;
-  # previousButtonReplays = ;
-  # alwaysExpandedSearchbar = ;
-  # mixedQueue = ;
-  # bypassRefreshPrompt = ;
-  # desktopTitlebar = ;
-  # desktopTitlebarType = ;
-  # tagFieldsToEdit = ;
-  # stretchLyricsDuration = ;
-  # playlistAddTracksAtBeginning = ;
-  # playlistAddTracksAtBeginningYT = ;
-  # wakelockMode = ;
-  # localVideoMatchingType = ;
-  # localVideoMatchingCheckSameDir = ;
-  # trackPlayMode = ;
-  # onNotificationTapAction = ;
-  # performanceMode = ;
-  # floatingActionButton = ;
-  # vibrationType = ;
-  # mostPlayedTimeRange = ;
-  # mostPlayedCustomDateRange = ;
-  # mostPlayedCustomisStartOfDay = ;
-  # ytMostPlayedTimeRange = ;
-  # ytMostPlayedCustomDateRange = ;
-  # ytMostPlayedCustomisStartOfDay = ;
-  # onTrackSwipeLeft = ;
-  # onTrackSwipeRight = ;
-  # artworkTapAction = ;
-  # artworkLongPressAction = ;
-  # displayThirdRow = ;
-  # displayThirdItemInEachRow = ;
-  # trackTileSeparator = ;
-  # displayFavouriteIconInListTile = ;
-  # gradientTiles = ;
-  # editTagsKeepFileDates = ;
-  # downloadFilesWriteUploadDate = ;
-  # downloadFilesKeepCachedVersions = ;
-  # downloadAddAudioToLocalLibrary = ;
-  # downloadAudioOnly = ;
-  # downloadOverrideOldFiles = ;
-  # enablePip = ;
-  # pickColorsFromDeviceWallpaper = ;
-  # trackItem = ;
-  # queueInsertion = ;
-  # mediaItemsTrackSorting = ;
-  # mediaItemsTrackSortingReverse = ;
-  # imageSourceAlbum = ;
-  # imageSourceArtist = ;
-  # fontScaleLRC = ;
-  # fontScaleLRCFull = ;
-}
+builtins.toJSON (
+  if cfg.settingsRaw.enable && cfg.settingsRaw.merge then
+    lib.recursiveUpdate baseConfiguration (cfg.settingsRaw.config or { })
+  else if cfg.settingsRaw.enable then
+    (cfg.settingsRaw.config or { })
+  else
+    baseConfiguration
+)
