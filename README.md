@@ -66,7 +66,8 @@ module for configuration if you want to.
 > [!WARNING]
 > Don't configure namida through this flake yet! It is still WIP, and some
 > settings needs to be moved away from the namida settings file, I already asked
-> the dev to do so.
+> the dev to do so. You can see the progress of the module at
+> [docs.md](/docs.md)
 
 To configure namida with the home manager module, follow these steps:
 
@@ -87,6 +88,10 @@ To configure namida with the home manager module, follow these steps:
    > [!NOTE]
    > See [docs.md](docs.md) to know the available options for
    > programs.namida.settings
+
+   > [!NOTE]
+   > See [caveats.md](./caveats.md) to checkout some issues you will face using
+   > the home manager module
 
 ## Credits
 

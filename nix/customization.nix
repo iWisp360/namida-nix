@@ -9,6 +9,12 @@ mkOption {
       blur = mkEnableOption "Whether to enable blur";
       glow = mkEnableOption "Whether to enable glow";
       parallax = mkEnableOption "Whether to enable parallax";
+      time12h = mkEnableOption "Whether to display time in 12h format";
+      dateTimeFormat = mkOption {
+        type = types.strMatching "^(?=(?:[^d]*d){0,2}[^d]*$)(?=(?:[^M]*M){0,4}[^M]*$)(?=(?:[^y]*y){0,4}[^y]*$).+$"; # 🤮
+        default = "MMM yyyy";
+        description = "Format for displaying date and time";
+      };
 
       borderRadius = mkOption {
         type = types.float;
@@ -21,10 +27,6 @@ mkOption {
         default = 0.9;
         description = "Define font size";
       };
-
-      displayRemainingDuration = mkEnableOption "Whether to display remaining duration instead of total";
-
-      displayActualPosition = mkEnableOption "Whether to display actual position instead of difference while seeking";
 
       albumTile = mkOption {
         type = types.submodule {

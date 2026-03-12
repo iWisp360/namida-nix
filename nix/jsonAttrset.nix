@@ -12,6 +12,8 @@
   useMediaStore = false;
   enablePip = false;
   pickColorsFromDeviceWallpaper = false;
+  hideStatusBarInExpandedMiniplayer = false;
+  displayFavouriteButtonInNotification = false;
   #################################
   # appearance related options
   themeMode = appearance.mode;
@@ -20,7 +22,6 @@
   staticColor = hexToInt32Argb (lib.toLower appearance.staticColors.light);
   staticColorDark = hexToInt32Argb (lib.toLower appearance.staticColors.dark);
   inherit (appearance) animatedTheme;
-  enableBlurEffect = customization.blur;
 
   # indexer related options
   inherit (indexer) respectNoMedia;
@@ -41,28 +42,84 @@
   forceMiniplayerTrackColor = appearance.forceMiniPlayerFollowTrackColors;
 
   # customization related options
-  # animatingThumbnailScaleMultiplier = ;
-  # animatingThumbnailIntensity =  / 4;
-  # animatingThumbnailIntensityLyrics = / 4;
-  # animatingThumbnailIntensityMinimized = / 4;
+  enableBlurEffect = customization.blur;
+  enableGlowEffect = customization.glow;
+  enableMiniplayerParallaxEffect = customization.parallax;
+  borderRadiusMultiplier = customization.borderRadius;
+  fontScaleFactor = customization.fontScale;
+  hourFormat12 = customization.time12h;
+  inherit (customization) dateTimeFormat;
+  displayTrackNumberinAlbumPage = customization.albumTile.displayTrackNumber;
+  albumCardTopRightDate = customization.albumTile.topRightDate;
+  forceSquaredAlbumThumbnail = customization.albumTile.thumbnails.squared;
+  useAlbumStaggeredGridView = customization.albumTile.staggeredGridView;
+  albumThumbnailSizeinList = customization.albumTile.thumbnails.size + 0.0;
+  albumListTileHeight = customization.albumTile.height + 0.0;
+  forceSquaredTrackThumbnail = customization.trackTile.thumbnails.squared;
+  trackThumbnailSizeinList = customization.trackTile.thumbnails.size + 0.0;
+  trackListTileHeight = customization.trackTile.height + 0.0;
+  onTrackSwipeLeft = customization.trackTile.swipeActions.left;
+  onTrackSwipeRight = customization.trackTile.swipeActions.right;
+  displayThirdRow = customization.thirdRow;
+  displayThirdItemInEachRow = customization.thirdItemEachRow;
+  trackTileSeparator = customization.itemsSeparator;
+  displayFavouriteIconInListTile = customization.favoriteButton;
+  trackItem = {
+    row1Item1 = customization.miniPlayer.layout.row1.element1;
+    row1Item2 = customization.miniPlayer.layout.row1.element2;
+    row1Item3 = customization.miniPlayer.layout.row1.element3;
 
-  # misc options
+    row2Item1 = customization.miniPlayer.layout.row2.element1;
+    row2Item2 = customization.miniPlayer.layout.row2.element2;
+    row2Item3 = customization.miniPlayer.layout.row2.element3;
+
+    row3Item1 = customization.miniPlayer.layout.row3.element1;
+    row3Item2 = customization.miniPlayer.layout.row3.element2;
+    row3Item3 = customization.miniPlayer.layout.row3.element3;
+
+    inherit (customization.miniPlayer.layout) rightItem1;
+    inherit (customization.miniPlayer.layout) rightItem2;
+  };
+
+  enablePartyModeInMiniplayer = customization.miniPlayer.customization.party;
+  enablePartyModeColorSwap = customization.miniPlayer.customization.edgeColorsSwitching;
+  enableMiniplayerParticles = customization.miniPlayer.customization.movingParticles;
+
+  animatingThumbnailScaleMultiplier =
+    customization.miniPlayer.customization.artworkGestures.scaleMultiplier;
+
+  animatingThumbnailIntensity =
+    customization.miniPlayer.customization.thumbnailAnimations.intensity.expandedMiniPlayer / 4;
+
+  animatingThumbnailIntensityLyrics =
+    customization.miniPlayer.customization.thumbnailAnimations.intensity.lyrics / 4;
+
+  animatingThumbnailIntensityMinimized =
+    customization.miniPlayer.customization.thumbnailAnimations.intensity.minimizedMiniPlayer / 4;
+
+  artworkGestureDoubleTapLRC = customization.miniPlayer.customization.artworkGestures.dt2ToggleLyrics;
+  artworkTapAction = customization.miniPlayer.customization.artworkGestures.actions.click;
+  artworkLongPressAction = customization.miniPlayer.customization.artworkGestures.actions.longPress;
+  waveformTotalBars = customization.miniPlayer.customization.waveformBarsCount;
+  displayAudioInfoMiniplayer = customization.miniPlayer.customization.displayAudioInfo;
+  displayArtistBeforeTitle = customization.miniPlayer.customization.artistBeforeTitle;
+
+  # playback related options TODO
+
+  # YT related option TODO
+
+  # backup related options TODO
+
+  # misc options TODO covers extras and advanced sections
   language.code = language;
   # libraryTabs = ;
   # homePageItems = ;
   # activeArtistType = ;
   # activeSearchMediaTypes = ;
-  # borderRadiusMultiplier = ;
-  # fontScaleFactor = ;
   # artworkCacheHeightMultiplier = ;
-  # trackThumbnailSizeinList = ;
-  # trackListTileHeight = ;
-  # albumThumbnailSizeinList = ;
   # albumListTileHeight = ;
   # displayTrackNumberinAlbumPage = ;
   # albumCardTopRightDate = ;
-  # forceSquaredTrackThumbnail = ;
-  # forceSquaredAlbumThumbnail = ;
   # useAlbumStaggeredGridView = ;
   # useSettingCollapsedTiles = ;
   # mediaGridCounts = ;
@@ -101,7 +158,6 @@
   # enableFoldersHierarchy = ;
   # enableFoldersHierarchyTracks = ;
   # enableFoldersHierarchyVideos = ;
-  # displayArtistBeforeTitle = ;
   # heatmapListensView = ;
   # reverseListensView = ;
   # backupItemslist_v2 = ;
@@ -111,13 +167,9 @@
   # videoPlaybackSource = ;
   # youtubeVideoQualities = ;
   # animatingThumbnailInversed = ;
-  # enablePartyModeInMiniplayer = ;
-  # enablePartyModeColorSwap = ;
-  # enableMiniplayerParticles = ;
   # enableMiniplayerParallaxEffect = ;
   # isTrackPlayedSecondsCount = ;
   # isTrackPlayedPercentageCount = ;
-  # waveformTotalBars = ;
   # videosMaxCacheInMB = ;
   # audiosMaxCacheInMB = ;
   # imagesMaxCacheInMB = ;
@@ -126,7 +178,6 @@
   # displayStopButtonInNotification = ;
   # enableSearchCleanup = ;
   # enableBottomNavBar = ;
-  # displayAudioInfoMiniplayer = ;
   # showUnknownFieldsInTrackInfoDialog = ;
   # enableM3USync = ;
   # enableM3USyncStartup = ;
@@ -134,7 +185,6 @@
   # swipeableDrawer = ;
   # dismissibleMiniplayer = ;
   # enableClipboardMonitoring = ;
-  # artworkGestureDoubleTapLRC = ;
   # previousButtonReplays = ;
   # alwaysExpandedSearchbar = ;
   # mixedQueue = ;
@@ -159,14 +209,6 @@
   # ytMostPlayedTimeRange = ;
   # ytMostPlayedCustomDateRange = ;
   # ytMostPlayedCustomisStartOfDay = ;
-  # onTrackSwipeLeft = ;
-  # onTrackSwipeRight = ;
-  # artworkTapAction = ;
-  # artworkLongPressAction = ;
-  # displayThirdRow = ;
-  # displayThirdItemInEachRow = ;
-  # trackTileSeparator = ;
-  # displayFavouriteIconInListTile = ;
   # gradientTiles = ;
   # editTagsKeepFileDates = ;
   # downloadFilesWriteUploadDate = ;
