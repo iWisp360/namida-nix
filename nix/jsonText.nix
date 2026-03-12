@@ -1,6 +1,5 @@
 { cfg, lib }:
 let
-  pow2 = num: if num == 0 then 1 else 2 * pow2 (num - 1);
   baseConfiguration =
     with cfg.settings;
     import ./jsonAttrset.nix {
@@ -13,6 +12,8 @@ let
         language
         ;
     };
+
+  pow2 = num: if num == 0 then 1 else 2 * pow2 (num - 1);
   bitShiftLeft = num: positions: num * pow2 positions;
   hexToInt32Argb =
     hex:

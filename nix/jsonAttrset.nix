@@ -10,6 +10,8 @@
   ## Unavailable values on linux ##
   canAskForBatteryOptimizations = false;
   useMediaStore = false;
+  enablePip = false;
+  pickColorsFromDeviceWallpaper = false;
   #################################
   # appearance related options
   themeMode = appearance.mode;
@@ -36,6 +38,13 @@
   directoriesToExclude = indexer.folders.exclude;
   preventDuplicatedTracks = indexer.preventDuplicates;
   extractFeatArtistFromTitle = indexer.featuredArtistsFromTitle;
+  forceMiniplayerTrackColor = appearance.forceMiniPlayerFollowTrackColors;
+
+  # customization related options
+  # animatingThumbnailScaleMultiplier = ;
+  # animatingThumbnailIntensity =  / 4;
+  # animatingThumbnailIntensityLyrics = / 4;
+  # animatingThumbnailIntensityMinimized = / 4;
 
   # misc options
   language.code = language;
@@ -101,16 +110,11 @@
   # lyricsSource = ;
   # videoPlaybackSource = ;
   # youtubeVideoQualities = ;
-  # animatingThumbnailScaleMultiplier = ;
-  # animatingThumbnailIntensity = ;
-  # animatingThumbnailIntensityLyrics = ;
-  # animatingThumbnailIntensityMinimized = ;
   # animatingThumbnailInversed = ;
   # enablePartyModeInMiniplayer = ;
   # enablePartyModeColorSwap = ;
   # enableMiniplayerParticles = ;
   # enableMiniplayerParallaxEffect = ;
-  # forceMiniplayerTrackColor = ;
   # isTrackPlayedSecondsCount = ;
   # isTrackPlayedPercentageCount = ;
   # waveformTotalBars = ;
@@ -170,8 +174,6 @@
   # downloadAddAudioToLocalLibrary = ;
   # downloadAudioOnly = ;
   # downloadOverrideOldFiles = ;
-  # enablePip = ;
-  # pickColorsFromDeviceWallpaper = ;
   # trackItem = ;
   # queueInsertion = ;
   # mediaItemsTrackSorting = ;

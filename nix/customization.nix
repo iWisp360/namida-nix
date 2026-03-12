@@ -9,9 +9,6 @@ mkOption {
       blur = mkEnableOption "Whether to enable blur";
       glow = mkEnableOption "Whether to enable glow";
       parallax = mkEnableOption "Whether to enable parallax";
-      party = mkEnableOption "Whether to enable party effect";
-      edgeColorsSwitching = mkEnableOption "Whether to switch colors in party effect";
-      movingParticles = mkEnableOption "Whether to enable moving particles effect";
 
       borderRadius = mkOption {
         type = types.float;
@@ -125,6 +122,239 @@ mkOption {
               };
 
               description = "Define actions when swiping tracks";
+            };
+          };
+        };
+      };
+
+      thirdRow = mkEnableOption "Whether to display third row";
+      thirdItemEachRow = mkEnableOption "Whether to display a third item in each row";
+      favoriteButton = mkEnableOption "Whether to display favorite button";
+      itemsSeparator = mkOption {
+        type = types.str;
+        default = "•";
+        description = "String that separates elements of a track";
+      };
+
+      miniPlayer = {
+        type = types.submodule {
+          options = {
+            layout =
+              let
+                availableElements = [
+                  "none"
+                  "title"
+                  "album"
+                  "artists"
+                  "albumArtist"
+                  "genres"
+                  "composer"
+                  "trackNumber"
+                  "discNumber"
+                  "duration"
+                  "year"
+                  "size"
+                  "dateAdded"
+                  "dateModified"
+                  "dateModifiedDate"
+                  "dateModifiedClock"
+                  "path"
+                  "folder"
+                  "fileName"
+                  "fileNameWOExt"
+                  "extension"
+                  "comment"
+                  "bitrate"
+                  "sampleRate"
+                  "format"
+                  "channels"
+                  "rating"
+                  "tags"
+                  "moods"
+                  "listenCount"
+                  "latestListenDate"
+                  "firstListenDate"
+                ];
+              in
+              mkOption {
+                type = types.submodule {
+                  options = {
+                    row1 = mkOption {
+                      type = types.submodule {
+                        options = {
+                          element1 = {
+                            type = types.enum availableElements;
+                            default = "title";
+                          };
+
+                          element2 = {
+                            type = types.enum availableElements;
+                            default = "none";
+                          };
+
+                          element3 = {
+                            type = types.enum availableElements;
+                            default = "none";
+                          };
+                        };
+                      };
+                    };
+
+                    row2 = mkOption {
+                      type = types.submodule {
+                        options = {
+                          element1 = {
+                            type = types.enum availableElements;
+                            default = "artists";
+                          };
+
+                          element2 = {
+                            type = types.enum availableElements;
+                            default = "none";
+                          };
+
+                          element3 = {
+                            type = types.enum availableElements;
+                            default = "none";
+                          };
+                        };
+                      };
+                    };
+
+                    row3 = mkOption {
+                      type = types.submodule {
+                        options = {
+                          element1 = {
+                            type = types.enum availableElements;
+                            default = "album";
+                          };
+
+                          element2 = {
+                            type = types.enum availableElements;
+                            default = "none";
+                          };
+
+                          element3 = {
+                            type = types.enum availableElements;
+                            default = "none";
+                          };
+                        };
+                      };
+                    };
+
+                    rightItem1 = mkOption {
+                      type = types.enum availableElements;
+                      default = "duration";
+                    };
+
+                    rightItem2 = mkOption {
+                      type = types.enum availableElements;
+                      default = "none";
+                    };
+                  };
+                };
+              };
+
+            customization = mkOption {
+              type = types.submodule {
+                options = {
+                  party = mkEnableOption "Whether to enable party effect";
+                  edgeColorsSwitching = mkEnableOption "Whether to switch colors in party effect";
+                  movingParticles = mkEnableOption "Whether to enable moving particles effect";
+                  thumbnailAnimations = mkOption {
+                    type = types.submodule {
+                      options = {
+                        intensity = mkOption {
+                          type = types.submodule {
+                            options = {
+                              expandedMiniPlayer = mkOption {
+                                type = types.ints.between 0 100;
+                                description = "Intensity of thumbnails animations, described in a percentage divisible by 4";
+                              };
+
+                              lyrics = mkOption {
+                                type = types.ints.between 0 100;
+                                description = "Intensity of thumbnails animations, described in a percentage divisible by 4";
+                              };
+
+                              minimizedMiniPlayer = mkOption {
+                                type = types.ints.between 0 100;
+                                description = "Intensity of thumbnails animations, described in a percentage divisible by 4";
+                              };
+                            };
+                          };
+                        };
+
+                        invert = mkEnableOption "Whether to invert animations";
+                      };
+                    };
+                  };
+
+                  artworkGestures = mkOption {
+                    type = types.submodule {
+                      options = {
+                        scaleMultiplier = mkOption {
+                          type = types.float;
+                          default = 1.0;
+                          description = "Multiplier for artwork gestures";
+                        };
+
+                        dt2ToggleLyrics = mkEnableOption "Whether to open lyrics by double clicking the track's artwork";
+                        actions =
+                          let
+                            availableActions = [
+                              "none"
+                              "playnext"
+                              "playlast"
+                              "playafter"
+                              "addtoplaylist"
+                              "openinfo"
+                              "openArtwork"
+                              "editArtwork"
+                              "saveArtwork"
+                              "editTags"
+                              "setRating"
+                              "openListens"
+                              "goToAlbum"
+                              "goToArtist"
+                              "goToFolder"
+                              "copyTitle"
+                              "copyArtist"
+                              "copyArtistAndTitle"
+                              "copyYTLink"
+                              "searchYTSimilar"
+                              "delete"
+                            ];
+                          in
+                          mkOption {
+                            type = types.submodule {
+                              options = {
+                                click = mkOption {
+                                  type = types.enum availableActions;
+                                  default = "none";
+                                };
+
+                                longPress = mkOption {
+                                  type = types.enum availableActions;
+                                  default = "none";
+                                };
+                              };
+                            };
+                          };
+                      };
+                    };
+                  };
+
+                  waveformBarsCount = mkOption {
+                    type = types.ints.between 40 400;
+                    default = 80;
+                    description = "Amount of bars for the waveform of the track";
+                  };
+
+                  displayAudioInfo = mkEnableOption "Whether to display audio info in player";
+                  artistBeforeTitle = mkEnableOption "Whether to display artist before title";
+                };
+              };
             };
           };
         };
