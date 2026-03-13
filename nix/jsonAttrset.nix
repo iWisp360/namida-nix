@@ -6,7 +6,7 @@
   language,
 }:
 let
-  helpers = ./helpers.nix { inherit lib; };
+  helpers = import ./helpers.nix { inherit lib; };
   f = helpers.intToFloat;
 in
 {

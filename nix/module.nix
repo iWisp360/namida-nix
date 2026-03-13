@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  jq,
   ...
 }:
 let
@@ -45,12 +46,17 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    home = {
-      packages = [ cfg.package ];
-      file.".namida/namida_settings.json" = lib.mkIf cfg.settings.enable {
-        text = import ./jsonText.nix { inherit cfg lib; };
+  config =
+    { lib }:
+    lib.mkIf cfg.enable {
+      home = {
+        packages = [ cfg.package ];
+        activation.namidaPatchConf = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          cat ${./jsonText { inherit cfg lib; }} > settings.json
+          ${jq}/bin/jq -s ".[0] * .[1]" ${config.home.homeDirectory}/.namida/namida_settings.json settings.json > new_settings.json
+          cat new_settings.json
+          exit 1
+        '';
       };
     };
-  };
 }

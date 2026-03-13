@@ -16,6 +16,7 @@
         import ./nix/module.nix {
           inherit config;
           inherit (nixpkgs) lib;
+          inherit (pkgs) jq;
           inherit pkgs;
         };
 
