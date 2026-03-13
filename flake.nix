@@ -5,7 +5,7 @@
   };
 
   outputs =
-    { nixpkgs, ... }:
+    { nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -17,10 +17,10 @@
       homeManagerModules.namida =
         { config, ... }:
         import ./nix/module.nix {
-          inherit config;
+          inherit config pkgs;
           inherit (nixpkgs) lib;
           inherit (pkgs) jq;
-          inherit pkgs;
+          inherit (inputs) home-manager;
         };
 
       packages.${system}.default = pkgs.callPackage ./default.nix { };
