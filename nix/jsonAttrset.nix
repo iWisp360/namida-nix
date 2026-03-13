@@ -1,11 +1,14 @@
 {
   appearance,
   lib,
-  hexToInt32Argb,
   customization,
   indexer,
   language,
 }:
+let
+  helpers = ./helpers.nix { inherit lib; };
+  f = helpers.intToFloat;
+in
 {
   ## Unavailable values on linux ##
   canAskForBatteryOptimizations = false;
@@ -24,71 +27,73 @@
   # misc options TODO covers extras and advanced sections
   language.code = language;
 }
-++ (with appearance; {
+// (with appearance; {
   themeMode = mode;
-  inherit pitchBlack;
-  inherit autoColor;
-  staticColor = hexToInt32Argb (lib.toLower staticColors.light);
-  staticColorDark = hexToInt32Argb (lib.toLower staticColors.dark);
-  inherit animatedTheme;
+  inherit pitchBlack autoColor animatedTheme;
+  staticColor = helpers.hexToInt32Argb (lib.toLower staticColors.light);
+  staticColorDark = helpers.hexToInt32Argb (lib.toLower staticColors.dark);
   forceMiniplayerTrackColor = forceMiniPlayerFollowTrackColors;
 })
-++ (with indexer; {
-  inherit respectNoMedia;
+// (with indexer; {
+  inherit respectNoMedia albumIdentifiers refreshOnStartup;
+  inherit (artworkCache) groupArtworksByAlbum;
   includeVideos = indexVideos;
   indexMinFileSizeInB = minimumFileSize;
   indexMinDurationInSec = minimumTrackDuration;
-  inherit albumIdentifiers;
   trackArtistsSeparators = artistsSeparators;
   trackGenresSeparators = genresSeparators;
-  inherit refreshOnStartup;
   cacheArtworks = artworkCache.enable;
   uniqueArtworkHash = artworkCache.artworkHash;
-  inherit (artworkCache) groupArtworksByAlbum;
   directoriesToScan = folders.include;
   directoriesToExclude = folders.exclude;
   preventDuplicatedTracks = preventDuplicates;
   extractFeatArtistFromTitle = featuredArtistsFromTitle;
 })
-++ (with customization; {
+// (with customization; {
+  inherit dateTimeFormat;
   enableBlurEffect = blur;
   enableGlowEffect = glow;
   enableMiniplayerParallaxEffect = parallax;
   borderRadiusMultiplier = borderRadius;
   fontScaleFactor = fontScale;
   hourFormat12 = time12h;
-  inherit dateTimeFormat;
   displayTrackNumberinAlbumPage = albumTile.displayTrackNumber;
   albumCardTopRightDate = albumTile.topRightDate;
   forceSquaredAlbumThumbnail = albumTile.thumbnails.squared;
   useAlbumStaggeredGridView = albumTile.staggeredGridView;
-  albumThumbnailSizeinList = albumTile.thumbnails.size + 0.0;
-  albumListTileHeight = albumTile.height + 0.0;
+  albumThumbnailSizeinList = f albumTile.thumbnails.size;
+  albumListTileHeight = f albumTile.height;
   forceSquaredTrackThumbnail = trackTile.thumbnails.squared;
-  trackThumbnailSizeinList = trackTile.thumbnails.size + 0.0;
-  trackListTileHeight = trackTile.height + 0.0;
+  trackThumbnailSizeinList = f trackTile.thumbnails.size;
+  trackListTileHeight = f trackTile.height;
   onTrackSwipeLeft = trackTile.swipeActions.left;
   onTrackSwipeRight = trackTile.swipeActions.right;
   displayThirdRow = thirdRow;
   displayThirdItemInEachRow = thirdItemEachRow;
   trackTileSeparator = itemsSeparator;
   displayFavouriteIconInListTile = favoriteButton;
-  trackItem = {
-    row1Item1 = miniPlayer.layout.row1.element1;
-    row1Item2 = miniPlayer.layout.row1.element2;
-    row1Item3 = miniPlayer.layout.row1.element3;
+  trackItem =
+    let
+      inherit (miniPlayer.layout) row1;
+      inherit (miniPlayer.layout) row2;
+      inherit (miniPlayer.layout) row3;
+    in
+    {
+      row1Item1 = row1.element1;
+      row1Item2 = row1.element2;
+      row1Item3 = row1.element3;
 
-    row2Item1 = miniPlayer.layout.row2.element1;
-    row2Item2 = miniPlayer.layout.row2.element2;
-    row2Item3 = miniPlayer.layout.row2.element3;
+      row2Item1 = row2.element1;
+      row2Item2 = row2.element2;
+      row2Item3 = row2.element3;
 
-    row3Item1 = miniPlayer.layout.row3.element1;
-    row3Item2 = miniPlayer.layout.row3.element2;
-    row3Item3 = miniPlayer.layout.row3.element3;
+      row3Item1 = row3.element1;
+      row3Item2 = row3.element2;
+      row3Item3 = row3.element3;
 
-    inherit (miniPlayer.layout) rightItem1;
-    inherit (miniPlayer.layout) rightItem2;
-  };
+      inherit (miniPlayer.layout) rightItem1;
+      inherit (miniPlayer.layout) rightItem2;
+    };
 
   enablePartyModeInMiniplayer = miniPlayer.customization.party;
   enablePartyModeColorSwap = miniPlayer.customization.edgeColorsSwitching;

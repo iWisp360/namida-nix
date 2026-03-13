@@ -97,7 +97,6 @@ mkOption {
                       "playlast"
                       "playafter"
                       "addtoplaylist"
-                      "openinfo"
                       "openArtwork"
                       "editArtwork"
                       "saveArtwork"
