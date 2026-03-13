@@ -1,7 +1,6 @@
 {
   mkOption,
   types,
-  config,
 }:
 let
   availableLanguages = {
@@ -38,7 +37,7 @@ let
   };
 in
 mkOption {
-  default = config.i18n.defaultLocale;
+  # default = config.i18n.defaultLocale;
   type = types.enum (builtins.attrNames availableLanguages);
   description = "Language used by Namida";
 }

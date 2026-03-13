@@ -18,19 +18,19 @@ mkOption {
             yearLimit = "(?=(?:[^y]*y){0,4}[^y]*$)";
           in
           types.strMatching "^${dayLimit}${monthLimit}${yearLimit}.+$";
-        default = "MMM yyyy";
+        # default = "MMM yyyy";
         description = "Format for displaying date and time";
       };
 
       borderRadius = mkOption {
         type = types.float;
-        default = 1.0;
+        # default = 1.0;
         description = "Multiplier for borders radius";
       };
 
       fontScale = mkOption {
         type = types.float;
-        default = 0.9;
+        # default = 0.9;
         description = "Define font size";
       };
 
@@ -42,7 +42,7 @@ mkOption {
             staggeredGridview = mkEnableOption "Whether to add spacing to thumbnail for uniform arrangement";
             height = mkOption {
               type = types.int;
-              default = 90;
+              # default = 90;
               description = "Height for all album tiles";
             };
 
@@ -51,7 +51,7 @@ mkOption {
                 options = {
                   size = mkOption {
                     type = types.int;
-                    default = 90;
+                    # default = 90;
                     description = "Size of album thumbails";
                   };
 
@@ -68,7 +68,7 @@ mkOption {
           options = {
             height = mkOption {
               type = types.int;
-              default = 90;
+              # default = 90;
               description = "Height for all track tiles";
             };
 
@@ -77,7 +77,7 @@ mkOption {
                 options = {
                   size = mkOption {
                     type = types.int;
-                    default = 90;
+                    # default = 90;
                     description = "Size of track thumbails";
                   };
 
@@ -117,12 +117,12 @@ mkOption {
                   {
                     left = mkOption {
                       type = types.enum actions;
-                      default = "playafter";
+                      # default = "playafter";
                     };
 
                     right = mkOption {
                       type = types.enum actions;
-                      default = "openinfo";
+                      # default = "openinfo";
                     };
                   };
               };
@@ -190,17 +190,17 @@ mkOption {
                         options = {
                           element1 = {
                             type = types.enum availableElements;
-                            default = "title";
+                            # default = "title";
                           };
 
                           element2 = {
                             type = types.enum availableElements;
-                            default = "none";
+                            # default = "none";
                           };
 
                           element3 = {
                             type = types.enum availableElements;
-                            default = "none";
+                            # default = "none";
                           };
                         };
                       };
@@ -211,17 +211,17 @@ mkOption {
                         options = {
                           element1 = {
                             type = types.enum availableElements;
-                            default = "artists";
+                            # default = "artists";
                           };
 
                           element2 = {
                             type = types.enum availableElements;
-                            default = "none";
+                            # default = "none";
                           };
 
                           element3 = {
                             type = types.enum availableElements;
-                            default = "none";
+                            # default = "none";
                           };
                         };
                       };
@@ -232,17 +232,17 @@ mkOption {
                         options = {
                           element1 = {
                             type = types.enum availableElements;
-                            default = "album";
+                            # default = "album";
                           };
 
                           element2 = {
                             type = types.enum availableElements;
-                            default = "none";
+                            # default = "none";
                           };
 
                           element3 = {
                             type = types.enum availableElements;
-                            default = "none";
+                            # default = "none";
                           };
                         };
                       };
@@ -250,12 +250,12 @@ mkOption {
 
                     rightItem1 = mkOption {
                       type = types.enum availableElements;
-                      default = "duration";
+                      # default = "duration";
                     };
 
                     rightItem2 = mkOption {
                       type = types.enum availableElements;
-                      default = "none";
+                      # default = "none";
                     };
                   };
                 };
@@ -301,7 +301,7 @@ mkOption {
                       options = {
                         scaleMultiplier = mkOption {
                           type = types.float;
-                          default = 1.0;
+                          # default = 1.0;
                           description = "Multiplier for artwork gestures";
                         };
 
@@ -337,12 +337,12 @@ mkOption {
                               options = {
                                 click = mkOption {
                                   type = types.enum availableActions;
-                                  default = "none";
+                                  # default = "none";
                                 };
 
                                 longPress = mkOption {
                                   type = types.enum availableActions;
-                                  default = "none";
+                                  # default = "none";
                                 };
                               };
                             };
@@ -353,7 +353,7 @@ mkOption {
 
                   waveformBarsCount = mkOption {
                     type = types.ints.between 40 400;
-                    default = 80;
+                    # default = 80;
                     description = "Amount of bars for the waveform of the track";
                   };
 

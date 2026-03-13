@@ -30,10 +30,7 @@ in
     };
 
     settings = mkOption {
-      default = {
-        enable = false;
-        # ... TODO
-      };
+      default = import ./default.nix { inherit config; };
 
       type = types.submodule {
         # config = import ./config.nix { inherit cfg; };
@@ -41,17 +38,8 @@ in
           enable = mkEnableOption "Whether to configure Namida through home manager";
           appearance = import ./appearance.nix { inherit types mkOption mkEnableOption; };
           playback = import ./playback.nix { inherit types mkOption mkEnableOption; };
-          indexer = import ./indexer.nix {
-            inherit
-              types
-              mkOption
-              mkEnableOption
-              config
-              ;
-          };
-
+          indexer = import ./indexer.nix { inherit types mkOption mkEnableOption; };
           customization = import ./customization.nix { inherit types mkOption mkEnableOption; };
-
           language = import ./language.nix { inherit types mkOption mkEnableOption; };
         };
       };

@@ -43,9 +43,9 @@ in
   trackArtistsSeparators = artistsSeparators;
   trackGenresSeparators = genresSeparators;
   cacheArtworks = artworkCache.enable;
-  uniqueArtworkHash = artworkCache.artworkHash;
-  directoriesToScan = folders.include;
-  directoriesToExclude = folders.exclude;
+  uniqueArtworkHash = artworkCache.hash;
+  directoriesToScan = builtins.map (dir: { source = dir; }) folders.include;
+  directoriesToExclude = builtins.map (dir: { source = dir; }) folders.exclude;
   preventDuplicatedTracks = preventDuplicates;
   extractFeatArtistFromTitle = featuredArtistsFromTitle;
 })
