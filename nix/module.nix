@@ -40,7 +40,7 @@ in
           playback = import ./playback.nix { inherit types mkOption mkEnableOption; };
           indexer = import ./indexer.nix { inherit types mkOption mkEnableOption; };
           customization = import ./customization.nix { inherit types mkOption mkEnableOption; };
-          language = import ./language.nix { inherit types mkOption mkEnableOption; };
+          language = import ./language.nix { inherit types mkOption; };
         };
       };
     };
