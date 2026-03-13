@@ -3,6 +3,7 @@
   enable = false;
   settingsRaw.enable = false;
   language = config.i18n.defaultLocale;
+  settingsRaw = null;
   appearance = {
     mode = "system";
     forceMiniPlayerFollowTrackColors = false;
