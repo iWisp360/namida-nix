@@ -20,13 +20,11 @@ mkOption {
           options = {
             light = mkOption {
               type = types.strMatching "^#[A-Fa-f0-9]{8}$";
-              # default = "#9c99c1ff";
               description = "Hexadecimal hash representing a color in rgba format";
             };
 
             dark = mkOption {
               type = types.strMatching "^#[A-Fa-f0-9]{8}$";
-              # default = "#4e4c72ff";
               description = "Hexadecimal hash representing a color in rgba format";
             };
           };

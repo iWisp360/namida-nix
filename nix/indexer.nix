@@ -13,13 +13,11 @@ mkOption {
       minimumFileSize = mkOption {
         type = types.int;
         description = "Define minimum file size for tracks to be indexed, in bytes";
-        # default = 102400;
       };
 
       minimumTrackDuration = mkOption {
         type = types.int;
         description = "Define minimum track duration for tracks to be indexed, in seconds";
-        # default = 25;
       };
 
       refreshOnStartup = mkEnableOption "Whether to refresh index on startup";
@@ -35,34 +33,16 @@ mkOption {
 
       genresSeparators = mkOption {
         type = types.listOf types.str;
-        # default = [
-        #   "&"
-        #   ","
-        #   ";"
-        #   "//"
-        #   "x"
-        # ];
-
         description = "Strings that separate genres in metadata";
       };
 
       artistsSeparators = mkOption {
         type = types.listOf types.str;
-        # default = [
-        #   "&"
-        #   ","
-        #   ";"
-        #   "//"
-        #   "ft."
-        #   "x"
-        # ];
-
         description = "Strings that separate artists in metadata";
       };
 
       albumIdentifiers = mkOption {
         type = types.listOf (types.strMatching "(albumName|year|albumArtist)");
-        # default = [ "albumName" ];
         description = "Elements to identify albums";
       };
 
@@ -71,17 +51,11 @@ mkOption {
           options = {
             include = mkOption {
               type = types.listOf types.str;
-              # default = [
-              #   "${config.home.homeDirectory}/Music"
-              #   "${config.home.homeDirectory}/Namida"
-              # ];
-
               description = "Paths that will be indexed by namida";
             };
 
             exclude = mkOption {
               type = types.listOf types.str;
-              # default = [ ];
               description = "Paths that will not be indexed by namida";
             };
           };
