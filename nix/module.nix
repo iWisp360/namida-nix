@@ -22,8 +22,7 @@ in
           enable = mkEnableOption "Whether to set json values in the config directly rather than in programs.namida.settings";
           merge = mkEnableOption "Whether to merge settings set here with the ones at programs.namida.settings";
           config = mkOption {
-            type = types.nullOr types.attrset;
-            default = null;
+            type = types.attrset;
           };
         };
       };

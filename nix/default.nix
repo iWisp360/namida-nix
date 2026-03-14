@@ -1,6 +1,7 @@
 { config }:
 {
   enable = false;
+  settingsRaw.enable = false;
   language = config.i18n.defaultLocale;
   appearance = {
     mode = "system";
