@@ -58,9 +58,20 @@ in
     home = {
       packages = [ cfg.package ];
       activation.namidaPatchConf = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-         echo '${import ./jsonText.nix { inherit cfg lib; }}' > /tmp/settings.json
-        ${jq}/bin/jq -s ".[0] * .[1]" ${config.home.homeDirectory}/.namida/namida_settings.json /tmp/settings.json > /tmp/new_settings.json
-        exit 1
+        HOME_MANAGER_CONFIGS=/tmp/settings.json
+        NAMIDA_CONFIGS=${config.home.homeDirectory}/.namida/namida_settings.json
+        MERGED_CONFIGS=/tmp/new_settings.json
+
+        echo '${import ./jsonText.nix { inherit cfg lib; }}' > $HOME_MANAGER_CONFIGS
+
+        if [ -f $NAMIDA_CONFIGS ]; then
+          ${jq}/bin/jq -s ".[0] * .[1]" $NAMIDA_CONFIGS $HOME_MANAGER_CONFIGS > $MERGED_CONFIGS
+          cp $MERGED_CONFIGS $NAMIDA_CONFIGS -v
+        else
+          cp $HOME_MANAGER_CONFIGS $NAMIDA_CONFIGS
+        fi
+
+        rm $HOME_MANAGER_CONFIGS $MERGED_CONFIGS -f
       '';
     };
   };
