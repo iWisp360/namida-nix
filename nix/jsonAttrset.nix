@@ -26,7 +26,7 @@ in
   # backup related options TODO
 
   # misc options TODO covers extras and advanced sections
-  language.code = availableLanguages.${language};
+  selectedLanguage.code = availableLanguages.${language};
 }
 // (with appearance; {
   themeMode = mode;
