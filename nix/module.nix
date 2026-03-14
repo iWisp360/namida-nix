@@ -57,22 +57,24 @@ in
   config = lib.mkIf cfg.enable {
     home = {
       packages = [ cfg.package ];
-      activation.namidaPatchConf = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        HOME_MANAGER_CONFIGS=/tmp/settings.json
-        NAMIDA_CONFIGS=${config.home.homeDirectory}/.namida/namida_settings.json
-        MERGED_CONFIGS=/tmp/new_settings.json
+      activation.namidaPatchConf = lib.mkIf cfg.settings.enable (
+        home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          HOME_MANAGER_CONFIGS=/tmp/settings.json
+          NAMIDA_CONFIGS=${config.home.homeDirectory}/.namida/namida_settings.json
+          MERGED_CONFIGS=/tmp/new_settings.json
 
-        echo '${import ./jsonText.nix { inherit cfg lib; }}' > $HOME_MANAGER_CONFIGS
+          echo '${import ./jsonText.nix { inherit cfg lib; }}' > $HOME_MANAGER_CONFIGS
 
-        if [ -f $NAMIDA_CONFIGS ]; then
-          ${jq}/bin/jq -s ".[0] * .[1]" $NAMIDA_CONFIGS $HOME_MANAGER_CONFIGS > $MERGED_CONFIGS
-          cp $MERGED_CONFIGS $NAMIDA_CONFIGS -v
-        else
-          cp $HOME_MANAGER_CONFIGS $NAMIDA_CONFIGS
-        fi
+          if [ -f $NAMIDA_CONFIGS ]; then
+            ${jq}/bin/jq -s ".[0] * .[1]" $NAMIDA_CONFIGS $HOME_MANAGER_CONFIGS > $MERGED_CONFIGS
+            cp $MERGED_CONFIGS $NAMIDA_CONFIGS -v
+          else
+            cp $HOME_MANAGER_CONFIGS $NAMIDA_CONFIGS
+          fi
 
-        rm $HOME_MANAGER_CONFIGS $MERGED_CONFIGS -f
-      '';
+          rm $HOME_MANAGER_CONFIGS $MERGED_CONFIGS -f
+        ''
+      );
     };
   };
 }
