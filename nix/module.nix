@@ -4,6 +4,7 @@
   home-manager,
   pkgs,
   jq,
+  osConfig,
   ...
 }:
 let
@@ -37,7 +38,7 @@ in
     };
 
     settings = mkOption {
-      default = import ./default.nix { inherit config; };
+      default = import ./default.nix { inherit config osConfig; };
 
       type = types.submodule {
         # config = import ./config.nix { inherit cfg; };

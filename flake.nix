@@ -15,9 +15,9 @@
     in
     {
       homeManagerModules.namida =
-        { config, ... }:
+        { config, osConfig, ... }:
         import ./nix/module.nix {
-          inherit config pkgs;
+          inherit config pkgs osConfig;
           inherit (nixpkgs) lib;
           inherit (pkgs) jq;
           inherit (inputs) home-manager;

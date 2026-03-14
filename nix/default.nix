@@ -1,7 +1,7 @@
-{ config }:
+{ config, osConfig }:
 {
   enable = false;
-  language = config.i18n.defaultLocale;
+  language = osConfig.i18n.defaultLocale or "en_US.UTF-8";
   appearance = {
     mode = "system";
     forceMiniPlayerFollowTrackColors = false;
