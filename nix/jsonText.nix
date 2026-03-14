@@ -4,7 +4,6 @@ let
     with cfg.settings;
     import ./jsonAttrset.nix {
       inherit
-        hexToInt32Argb
         lib
         appearance
         customization
