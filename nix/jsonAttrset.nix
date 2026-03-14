@@ -60,7 +60,7 @@ in
   displayTrackNumberinAlbumPage = albumTile.displayTrackNumber;
   albumCardTopRightDate = albumTile.topRightDate;
   forceSquaredAlbumThumbnail = albumTile.thumbnails.squared;
-  useAlbumStaggeredGridView = albumTile.staggeredGridView;
+  useAlbumStaggeredGridView = albumTile.staggeredGridview;
   albumThumbnailSizeinList = f albumTile.thumbnails.size;
   albumListTileHeight = f albumTile.height;
   forceSquaredTrackThumbnail = trackTile.thumbnails.squared;
