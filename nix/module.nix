@@ -58,9 +58,8 @@ in
     home = {
       packages = [ cfg.package ];
       activation.namidaPatchConf = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        cat ${import ./jsonText.nix { inherit cfg lib; }} > settings.json
-        ${jq}/bin/jq -s ".[0] * .[1]" ${config.home.homeDirectory}/.namida/namida_settings.json settings.json > new_settings.json
-        cat new_settings.json
+         echo '${import ./jsonText.nix { inherit cfg lib; }}' > /tmp/settings.json
+        ${jq}/bin/jq -s ".[0] * .[1]" ${config.home.homeDirectory}/.namida/namida_settings.json /tmp/settings.json > /tmp/new_settings.json
         exit 1
       '';
     };
