@@ -6,6 +6,7 @@
   language,
 }:
 let
+  availableLanguages = import ./availableLanguages.nix;
   helpers = import ./helpers.nix { inherit lib; };
   f = helpers.intToFloat;
 in
@@ -25,7 +26,7 @@ in
   # backup related options TODO
 
   # misc options TODO covers extras and advanced sections
-  language.code = language;
+  language.code = availableLanguages.${language};
 }
 // (with appearance; {
   themeMode = mode;
