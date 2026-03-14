@@ -173,9 +173,17 @@ mkOption {
                     row1 = mkOption {
                       type = types.submodule {
                         options = {
-                          element1.type = types.enum availableElements;
-                          element2.type = types.enum availableElements;
-                          element3.type = types.enum availableElements;
+                          element1 = mkOption {
+                            type = types.enum availableElements;
+                          };
+
+                          element2 = mkOption {
+                            type = types.enum availableElements;
+                          };
+
+                          element3 = mkOption {
+                            type = types.enum availableElements;
+                          };
                         };
                       };
                     };
@@ -183,9 +191,17 @@ mkOption {
                     row2 = mkOption {
                       type = types.submodule {
                         options = {
-                          element1.type = types.enum availableElements;
-                          element2.type = types.enum availableElements;
-                          element3.type = types.enum availableElements;
+                          element1 = mkOption {
+                            type = types.enum availableElements;
+                          };
+
+                          element2 = mkOption {
+                            type = types.enum availableElements;
+                          };
+
+                          element3 = mkOption {
+                            type = types.enum availableElements;
+                          };
                         };
                       };
                     };
@@ -193,9 +209,17 @@ mkOption {
                     row3 = mkOption {
                       type = types.submodule {
                         options = {
-                          element1.type = types.enum availableElements;
-                          element2.type = types.enum availableElements;
-                          element3.type = types.enum availableElements;
+                          element1 = mkOption {
+                            type = types.enum availableElements;
+                          };
+
+                          element2 = mkOption {
+                            type = types.enum availableElements;
+                          };
+
+                          element3 = mkOption {
+                            type = types.enum availableElements;
+                          };
                         };
                       };
                     };
