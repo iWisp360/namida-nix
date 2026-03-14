@@ -65,7 +65,6 @@ mkOption {
                 options = {
                   size = mkOption {
                     type = types.int;
-                    # default = 90;
                     description = "Size of track thumbails";
                   };
 

@@ -35,7 +35,11 @@
 
     trackTile = {
       height = 90;
-      squared = false;
+      thumbnails = {
+        size = 90;
+        squared = false;
+      };
+
       swipeActions = {
         left = "playafter";
         right = "openinfo";
