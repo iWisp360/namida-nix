@@ -134,7 +134,7 @@ mkOption {
         description = "String that separates elements of a track";
       };
 
-      miniPlayer = {
+      miniPlayer = mkOption {
         type = types.submodule {
           options = {
             layout =

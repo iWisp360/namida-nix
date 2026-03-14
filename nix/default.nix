@@ -25,7 +25,7 @@
     albumTile = {
       displayTrackNumber = true;
       topRightDate = true;
-      staggeredGridView = false;
+      staggeredGridview = false;
       height = 90;
       thumbnails = {
         size = 90;
