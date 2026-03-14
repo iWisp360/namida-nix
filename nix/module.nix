@@ -38,17 +38,24 @@ in
     };
 
     settings = mkOption {
-      default = import ./default.nix { inherit config osConfig; };
+      default.enable = false;
 
       type = types.submodule {
         # config = import ./config.nix { inherit cfg; };
         options = {
           enable = mkEnableOption "Whether to configure Namida through home manager";
-          appearance = import ./appearance.nix { inherit types mkOption mkEnableOption; };
+          appearance = import ./appearance.nix { inherit types mkOption; };
           playback = import ./playback.nix { inherit types mkOption mkEnableOption; };
-          indexer = import ./indexer.nix { inherit types mkOption mkEnableOption; };
-          customization = import ./customization.nix { inherit types mkOption mkEnableOption; };
-          language = import ./language.nix { inherit types mkOption; };
+          indexer = import ./indexer.nix {
+            inherit
+              types
+              mkOption
+              config
+              ;
+          };
+
+          customization = import ./customization.nix { inherit types mkOption; };
+          language = import ./language.nix { inherit types mkOption osConfig; };
         };
       };
     };

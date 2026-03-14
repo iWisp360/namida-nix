@@ -21,6 +21,9 @@ note that `enable` must be set to true for it to work
 
 This documentation page assumes `cfg` is `programs.namida.settings`
 
+Have a look at [default.nix](./nix/default.nix) if you want to have a look of
+the configs in the module.
+
 ## Appearance
 
 ### cfg.appearance
