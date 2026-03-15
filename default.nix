@@ -1,6 +1,7 @@
 {
   stdenv,
   fetchurl,
+  fetchgit,
   autoPatchelfHook,
   wrapGAppsHook3,
   makeWrapper,
@@ -16,10 +17,17 @@
   libcxx,
   dbus,
   lib,
+  unar,
+  icon ? "default",
 }:
 let
   buildId = "260213222";
   version = "5.7.2-beta";
+  iconsUrl = "https://codeberg.org/iWisp360/namida-icons";
+  icons = fetchgit {
+    url = "${iconsUrl}";
+    sha256 = "sha256-FlH4WAQO35FVT775KApVi41ayg4wiuT/CvPNsC7/PDY=";
+  };
 in
 stdenv.mkDerivation rec {
   name = "namida";
@@ -45,6 +53,7 @@ stdenv.mkDerivation rec {
     pango
     harfbuzz
     libcxx
+    unar
   ];
 
   sourceRoot = ".";
@@ -60,9 +69,23 @@ stdenv.mkDerivation rec {
     ln -s ${ffmpeg}/bin/ffprobe $out/bin/ffprobe
     ln -s ${ffmpeg}/bin/ffmpeg $out/bin/ffmpeg
     mkdir -p $out/share/icons/hicolor/{128x128,256x256,512x512}/apps
-    mv $out/share/icons/namida_128.png $out/share/icons/hicolor/128x128/apps/namida.png
-    mv $out/share/icons/namida_256.png $out/share/icons/hicolor/256x256/apps/namida.png
-    mv $out/share/icons/namida_512.png $out/share/icons/hicolor/512x512/apps/namida.png
+    rm $out/share/icons/namida.png
+    if [ "${icon}" = "default" ]; then
+      mv $out/share/icons/namida_128.png $out/share/icons/hicolor/128x128/apps/namida.png
+      mv $out/share/icons/namida_256.png $out/share/icons/hicolor/256x256/apps/namida.png
+      mv $out/share/icons/namida_512.png $out/share/icons/hicolor/512x512/apps/namida.png
+    else
+      rm $out/share/icons/namida_128.png
+      rm $out/share/icons/namida_256.png
+      rm $out/share/icons/namida_512.png
+
+      unar ${icons}/${icon}.tar.xz
+
+      mv ${icon}/namida_icon_${icon}.128.png $out/share/icons/hicolor/128x128/apps/namida.png
+      mv ${icon}/namida_icon_${icon}.256.png $out/share/icons/hicolor/256x256/apps/namida.png
+      mv ${icon}/namida_icon_${icon}.512.png $out/share/icons/hicolor/512x512/apps/namida.png
+    fi
+
     runHook postInstall
   '';
 

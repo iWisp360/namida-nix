@@ -12,11 +12,33 @@ let
 in
 {
   options.programs.namida = with lib; {
-    enable = mkEnableOption "Whether to enable namida";
+    enable = mkEnableOption "Namida";
+
     package = mkOption {
       type = types.package;
-      default = pkgs.callPackage ../default.nix { };
+      default = pkgs.callPackage ../default.nix { inherit (cfg) icon; };
       description = "Namida package to use";
+    };
+
+    icon = mkOption {
+      type = types.enum [
+        "tired"
+        "spooky"
+        "space"
+        "shade"
+        "original"
+        "namiween"
+        "namichin"
+        "hollow"
+        "glowy"
+        "enhanced"
+        "eddy"
+        "cutsie"
+        "default"
+      ];
+
+      default = "default";
+      description = "Icon to use";
     };
 
     settingsRaw = mkOption {
@@ -28,8 +50,8 @@ in
 
       type = types.submodule {
         options = {
-          enable = mkEnableOption "Whether to set json values in the config directly rather than in programs.namida.settings";
-          merge = mkEnableOption "Whether to merge settings set here with the ones at programs.namida.settings";
+          enable = mkEnableOption "json values in the config directly rather than in programs.namida.settings";
+          merge = mkEnableOption "merging rawSettings with programs.namida.settings";
           config = mkOption {
             type = types.attrset;
           };
@@ -43,7 +65,7 @@ in
       type = types.submodule {
         # config = import ./config.nix { inherit cfg; };
         options = {
-          enable = mkEnableOption "Whether to configure Namida through home manager";
+          enable = mkEnableOption "Namida configuration through home manager";
           appearance = import ./appearance.nix { inherit types mkOption; };
           playback = import ./playback.nix { inherit types mkOption mkEnableOption; };
           indexer = import ./indexer.nix { inherit types mkOption config; };
