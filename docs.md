@@ -19,10 +19,36 @@ while other settings remain untouched. If an option is not available yet, you
 may define it directly by knowing the json key at `programs.namida.settingsRaw`,
 note that `enable` must be set to true for it to work
 
-This documentation page assumes `cfg` is `programs.namida.settings`
+Namida supports more than just its default icon(at least the home manager
+module). If you want, you can set `programs.namida.icon` to one of
 
-Have a look at [default.nix](./nix/default.nix) if you want to have a look of
-the configs in the module.
+```nix
+[
+  "tired"
+  "spooky"
+  "space"
+  "shade"
+  "original"
+  "namiween"
+  "namichin"
+  "hollow"
+  "glowy"
+  "enhanced"
+  "eddy"
+  "cutsie"
+  "default"
+]
+```
+
+> [!NOTE]
+> If you want to preview the icons, check out
+> [https://codeberg.org/namida-icons]
+>
+> By default, `programs.namida.icon` is set to "default"
+
+> [!NOTE]
+> At this point, this documentation page assumes `cfg` is
+> `programs.namida.settings`
 
 ## Appearance
 
