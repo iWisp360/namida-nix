@@ -42,7 +42,7 @@ module). If you want, you can set `programs.namida.icon` to one of
 
 > [!NOTE]
 > If you want to preview the icons, check out
-> [https://codeberg.org/namida-icons]
+> [https://codeberg.org/iWisp360/namida-icons]
 >
 > By default, `programs.namida.icon` is set to "default"
 
