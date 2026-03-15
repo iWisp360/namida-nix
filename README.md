@@ -57,7 +57,7 @@ module for configuration if you want to.
 > ```nix
 > (import (builtins.fetchGit { 
 >   url = "https://codeberg.org/iWisp360/namida-nix"; 
->   rev = "90dc7805bc2d0e7b456983985698a6676ca36b35"; # latest revision where nix/default.nix got modified
+>   rev = "85ecceaff6bfa6c0409dff05ceee8d0b21adaaf0"; # latest revision where nix/default.nix got modified
 >  }))
 > ```
 
