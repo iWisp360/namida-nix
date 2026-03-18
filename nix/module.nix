@@ -16,7 +16,10 @@ in
 
     package = mkOption {
       type = types.package;
-      default = pkgs.callPackage ../default.nix { inherit (cfg) icon; };
+      default = pkgs.callPackage ../default.nix {
+        inherit (cfg) icon;
+      };
+
       description = "Namida package to use";
     };
 

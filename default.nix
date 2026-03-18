@@ -19,22 +19,28 @@
   lib,
   unar,
   icon ? "default",
+  libwpe,
+  libsoup_3,
+  libsecret,
+  callPackage,
 }:
 let
-  buildId = "260213222";
-  version = "5.7.2-beta";
+  buildId = "260319033";
+  version = "5.8.5-beta";
   iconsUrl = "https://codeberg.org/iWisp360/namida-icons";
   icons = fetchgit {
     url = "${iconsUrl}";
     sha256 = "sha256-FlH4WAQO35FVT775KApVi41ayg4wiuT/CvPNsC7/PDY=";
   };
+
+  wpewebkit = callPackage ./wpewebkit.nix { };
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   name = "namida";
   inherit version;
   src = fetchurl {
     url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildId}/namida-v${version}.linux.tar.gz";
-    hash = "sha256-/4YfGraIYUWBdqR9GKCfIXQXRK/ncNjQL06BfGUbLlg=";
+    hash = "sha256-5aDau+QMdcilts4OQGAAccCZHUOdY99+tTOkqdifZcY=";
   };
 
   nativeBuildInputs = [
@@ -54,6 +60,12 @@ stdenv.mkDerivation rec {
     harfbuzz
     libcxx
     unar
+    libwpe
+    audiowaveform
+    ffmpeg
+    libsoup_3
+    libsecret
+    wpewebkit
   ];
 
   sourceRoot = ".";
@@ -63,11 +75,7 @@ stdenv.mkDerivation rec {
     mkdir -p $out/{bin,lib}
     cp * $out -rv
     rm -r $out/bin/*
-    mv namida $out
-    ln -s $out/namida $out/bin/namida
-    ln -s ${audiowaveform}/bin/audiowaveform $out/bin/audiowaveform
-    ln -s ${ffmpeg}/bin/ffprobe $out/bin/ffprobe
-    ln -s ${ffmpeg}/bin/ffmpeg $out/bin/ffmpeg
+    ln -s $out/namida_bin $out/bin/namida
     mkdir -p $out/share/icons/hicolor/{128x128,256x256,512x512}/apps
     rm $out/share/icons/namida.png
     if [ "${icon}" = "default" ]; then
