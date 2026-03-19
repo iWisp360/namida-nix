@@ -12,6 +12,12 @@
 - [ ] Backup & Restore section
 - [ ] Advanced Section
 
+> [!NOTE]
+> Namida is in constant development, and to align with it, I provided
+> `inputs.namida.packages.${system}.beta`, which will bring the very latest
+> snapshot version, instead of `5.7.2-beta`. You can set programs.namida.package
+> or add it directly to your systemPackages
+
 # Namida Configuration with Nix
 
 This module uses JQ to safely merge all options defined within this module,
