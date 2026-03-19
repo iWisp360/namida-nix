@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:iWisp360/nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
   };
 
@@ -23,6 +23,9 @@
           inherit (inputs) home-manager;
         };
 
-      packages.${system}.default = pkgs.callPackage ./default.nix { };
+      packages.${system} = {
+        default = pkgs.callPackage ./default.nix { };
+        beta = pkgs.callPackage ./beta.nix { };
+      };
     };
 }
