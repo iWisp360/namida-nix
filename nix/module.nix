@@ -66,7 +66,6 @@ in
       default.enable = false;
 
       type = types.submodule {
-        # config = import ./config.nix { inherit cfg; };
         options = {
           enable = mkEnableOption "Namida configuration through home manager";
           appearance = import ./appearance.nix { inherit types mkOption; };
