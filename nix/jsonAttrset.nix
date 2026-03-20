@@ -19,14 +19,10 @@ in
   hideStatusBarInExpandedMiniplayer = false;
   displayFavouriteButtonInNotification = false;
   #################################
-  # playback related options TODO
-
-  # YT related option TODO
-
   # backup related options TODO
 
   # misc options TODO covers extras and advanced sections
-  selectedLanguage.code = availableLanguages.${language};
+  language.code = availableLanguages.${language};
 }
 // (with appearance; {
   themeMode = mode;
