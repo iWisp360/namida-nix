@@ -30,7 +30,8 @@ let
   iconsUrl = "https://codeberg.org/iWisp360/namida-icons";
   icons = fetchgit {
     url = "${iconsUrl}";
-    sha256 = "sha256-FlH4WAQO35FVT775KApVi41ayg4wiuT/CvPNsC7/PDY=";
+    rev = "021b2f4f80e4752c5a38822b80db128931024ed5";
+    hash = "sha256-Q4Jd5n6aIfRakJTr+K7lrbOPADdiMz29InAkUwBoFac=";
   };
 in
 stdenv.mkDerivation {
