@@ -16,13 +16,13 @@ rec {
     );
 
   settingsWriteScript = src: target: ''
-    HOME_MANAGER_CONFIGS=/tmp/settings.json
+    HOME_MANAGER_CONFIGS=$(mktemp)
     NAMIDA_CONFIGS=${src}
-    MERGED_CONFIGS=/tmp/new_settings.json
+    MERGED_CONFIGS=$(mktemp)
 
     echo '${target}' > $HOME_MANAGER_CONFIGS
 
-    if [ -f $NAMIDA_CONFIGS ]; then
+    if [ -s $NAMIDA_CONFIGS ]; then
       ${jq}/bin/jq -s ".[0] * .[1]" $NAMIDA_CONFIGS $HOME_MANAGER_CONFIGS > $MERGED_CONFIGS
       cp $MERGED_CONFIGS $NAMIDA_CONFIGS -v
     else
