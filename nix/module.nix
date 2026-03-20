@@ -76,6 +76,7 @@ in
           language = import ./language.nix { inherit types mkOption osConfig; };
           backup = import ./backup.nix { inherit config types mkOption; };
           cacheSizes = import ./cacheSizes.nix { inherit types mkOption; };
+          player = import ./player.nix { inherit types mkOption; };
         };
       };
     };

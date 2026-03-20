@@ -11,6 +11,7 @@ let
         language
         backup
         cacheSizes
+        player
         ;
     };
 in

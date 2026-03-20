@@ -18,41 +18,47 @@ mkOption {
         description = "Floating Action Button in player";
       };
 
-      navigationBar = mkOption {
-        description = "Settings for the bottombar or sidebar";
-        default = { };
-        type = types.submodule {
-          options = {
-            defaultTab = mkOption { };
-            disposition = mkOption {
-              type = types.listOf (
-                types.enum [
+      navigationBar =
+        let
+          tabs = [
+            "home"
+            "albums"
+            "tracks"
+            "artists"
+            "genres"
+            "playlists"
+            "folders"
+            "foldersMusic"
+            "foldersVideos"
+            "search"
+            "youtube"
+          ];
+        in
+        mkOption {
+          description = "Settings for the bottombar or sidebar";
+          default = { };
+          type = types.submodule {
+            options = {
+              defaultTab = mkOption {
+                type = types.enum tabs ++ [ "auto" ];
+                default = "auto";
+              };
+
+              disposition = mkOption {
+                type = types.listOf types.enum tabs;
+
+                default = [
                   "home"
-                  "albums"
                   "tracks"
                   "artists"
-                  "genres"
                   "playlists"
                   "folders"
-                  "foldersMusic"
-                  "foldersVideos"
-                  "search"
                   "youtube"
-                ]
-              );
-
-              default = [
-                "home"
-                "tracks"
-                "artists"
-                "playlists"
-                "folders"
-                "youtube"
-              ];
+                ];
+              };
             };
           };
         };
-      };
 
       blur = mkOption {
         type = types.bool;

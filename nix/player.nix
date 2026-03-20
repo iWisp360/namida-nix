@@ -33,7 +33,7 @@ mkOption {
         };
       };
 
-      imagesSource =
+      imagesSources =
         let
           sources = [
             "local"
@@ -45,14 +45,22 @@ mkOption {
           type = types.submodule {
             options = {
               albums = mkOption {
-                type = types.enum sources;
-                default = "";
+                type = types.listOf (types.enum sources);
+                default = [
+                  "lastfm"
+                  "local"
+                ];
+
                 description = "Internet source to get albums images from";
               };
 
               artists = mkOption {
-                type = types.enum sources;
-                default = "";
+                type = types.listOf (types.enum sources);
+                default = [
+                  "lastfm"
+                  "local"
+                ];
+
                 description = "Internet source to get artists images from";
               };
             };

@@ -6,6 +6,7 @@
   language,
   backup,
   cacheSizes,
+  player,
 }:
 let
   availableLanguages = import ./availableLanguages.nix;
@@ -21,7 +22,6 @@ in
   hideStatusBarInExpandedMiniplayer = false;
   displayFavouriteButtonInNotification = false;
   #################################
-  # misc options TODO covers extras and advanced sections
   language.code = availableLanguages.${language};
 }
 // (with appearance; {
@@ -47,7 +47,8 @@ in
   extractFeatArtistFromTitle = featuredArtistsFromTitle;
 })
 // (with customization; {
-  inherit dateTimeFormat;
+  inherit dateTimeFormat floatingActionButton;
+  libraryTabs = navigationBar.disposition;
   enableBlurEffect = blur;
   enableGlowEffect = glow;
   enableMiniplayerParallaxEffect = parallax;
@@ -123,114 +124,10 @@ in
   audiosMaxCacheInMB = audio;
   imagesMaxCacheInMB = image;
 })
-
-# libraryTabs = ;
-# homePageItems = ;
-# activeArtistType = ;
-# activeSearchMediaTypes = ;
-# artworkCacheHeightMultiplier = ;
-# albumListTileHeight = ;
-# displayTrackNumberinAlbumPage = ;
-# albumCardTopRightDate = ;
-# useAlbumStaggeredGridView = ;
-# useSettingCollapsedTiles = ;
-# mediaGridCounts = ;
-# activeAlbumTypes = ;
-# activeTrSearch = ;
-# enableGlowEffect = ;
-# enableGlowBehindVideo = ;
-# hourFormat12 = ;
-# dateTimeFormat = ;
-# trackArtistsSeparatorsBlacklist = ;
-# trackGenresSeparatorsBlacklist = ;
-# extensionsBlacklist = ;
-# fileBrowserSort = ;
-# fileBrowserSortReversed = ;
-# tracksSortSearch = ;
-# tracksSortSearchReversed = ;
-# tracksSortSearchIsAuto = ;
-# albumSort = ;
-# albumSortReversed = ;
-# artistSort = ;
-# artistSortReversed = ;
-# genreSort = ;
-# genreSortReversed = ;
-# playlistSort = ;
-# playlistSortReversed = ;
-# ytPlaylistSort = ;
-# ytPlaylistSortReversed = ;
-# trackSearchFilter = ;
-# ignoreCommonPrefixForTypes = ;
-# commonPrefixes = ;
-# playlistSearchFilter = ;
-# defaultFolderStartupLocation = ;
-# defaultFolderStartupLocationVideos = ;
-# enableFoldersHierarchy = ;
-# enableFoldersHierarchyTracks = ;
-# enableFoldersHierarchyVideos = ;
-# heatmapListensView = ;
-# reverseListensView = ;
-# backupItemslist_v2 = ;
-# enableVideoPlayback = ;
-# enableLyrics = ;
-# lyricsSource = ;
-# videoPlaybackSource = ;
-# youtubeVideoQualities = ;
-# animatingThumbnailInversed = ;
-# enableMiniplayerParallaxEffect = ;
-# isTrackPlayedSecondsCount = ;
-# isTrackPlayedPercentageCount = ;
-# videosMaxCacheInMB = ;
-# audiosMaxCacheInMB = ;
-# imagesMaxCacheInMB = ;
-# hideStatusBarInExpandedMiniplayer = ;
-# displayFavouriteButtonInNotification = ;
-# displayStopButtonInNotification = ;
-# enableSearchCleanup = ;
-# enableBottomNavBar = ;
-# showUnknownFieldsInTrackInfoDialog = ;
-# enableM3USync = ;
-# enableM3USyncStartup = ;
-# prioritizeEmbeddedLyrics = ;
-# swipeableDrawer = ;
-# dismissibleMiniplayer = ;
-# enableClipboardMonitoring = ;
-# previousButtonReplays = ;
-# alwaysExpandedSearchbar = ;
-# mixedQueue = ;
-# bypassRefreshPrompt = ;
-# desktopTitlebar = ;
-# desktopTitlebarType = ;
-# tagFieldsToEdit = ;
-# stretchLyricsDuration = ;
-# playlistAddTracksAtBeginning = ;
-# playlistAddTracksAtBeginningYT = ;
-# wakelockMode = ;
-# localVideoMatchingType = ;
-# localVideoMatchingCheckSameDir = ;
-# trackPlayMode = ;
-# onNotificationTapAction = ;
-# performanceMode = ;
-# floatingActionButton = ;
-# vibrationType = ;
-# mostPlayedTimeRange = ;
-# mostPlayedCustomDateRange = ;
-# mostPlayedCustomisStartOfDay = ;
-# ytMostPlayedTimeRange = ;
-# ytMostPlayedCustomDateRange = ;
-# ytMostPlayedCustomisStartOfDay = ;
-# gradientTiles = ;
-# editTagsKeepFileDates = ;
-# downloadFilesWriteUploadDate = ;
-# downloadFilesKeepCachedVersions = ;
-# downloadAddAudioToLocalLibrary = ;
-# downloadAudioOnly = ;
-# downloadOverrideOldFiles = ;
-# trackItem = ;
-# queueInsertion = ;
-# mediaItemsTrackSorting = ;
-# mediaItemsTrackSortingReverse = ;
-# imageSourceAlbum = ;
-# imageSourceArtist = ;
-# fontScaleLRC = ;
-# fontScaleLRCFull = ;
+// (with player; {
+  prioritizeEmbeddedLyrics = lyrics.prioritizeEmbedded;
+  lyricsSource = lyrics.source;
+  stretchLyricsDuration = lyrics.stretchDuration;
+  imageSourceAlbum = imagesSources.album;
+  imageSourceArtist = imagesSources.album;
+})
