@@ -6,6 +6,54 @@ mkOption {
   default = { };
   type = types.submodule {
     options = {
+      floatingActionButton = mkOption {
+        type = types.enum [
+          "none"
+          "play"
+          "shuffle"
+          "search"
+        ];
+
+        default = "none";
+        description = "Floating Action Button in player";
+      };
+
+      navigationBar = mkOption {
+        description = "Settings for the bottombar or sidebar";
+        default = { };
+        type = types.submodule {
+          options = {
+            defaultTab = mkOption { };
+            disposition = mkOption {
+              type = types.listOf (
+                types.enum [
+                  "home"
+                  "albums"
+                  "tracks"
+                  "artists"
+                  "genres"
+                  "playlists"
+                  "folders"
+                  "foldersMusic"
+                  "foldersVideos"
+                  "search"
+                  "youtube"
+                ]
+              );
+
+              default = [
+                "home"
+                "tracks"
+                "artists"
+                "playlists"
+                "folders"
+                "youtube"
+              ];
+            };
+          };
+        };
+      };
+
       blur = mkOption {
         type = types.bool;
         default = false;
