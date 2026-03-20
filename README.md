@@ -63,11 +63,6 @@ module for configuration if you want to.
 
 ## Configuration
 
-> [!WARNING]
-> Not all Namida settings are satisfied, in the meanwhile, you can configure
-> missing options through the app. You can see the progress of the module at
-> [docs.md](./docs.md)
-
 To configure namida with the home manager module, follow these steps:
 
 1. Set programs.namida.settings.enable to true

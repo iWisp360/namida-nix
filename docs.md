@@ -1,17 +1,6 @@
 > [!NOTE]
 > TODO, check ./nix/module.nix meanwhile
 
-## Progress
-
-- [x] Theme section
-- [x] Indexer section
-- [/] Playback section
-- [x] Customizations section
-- [ ] Youtube section
-- [ ] Extras section
-- [ ] Backup & Restore section
-- [ ] Advanced Section
-
 > [!NOTE]
 > Namida is in constant development, and to align with it, I provided
 > `inputs.namida.packages.${system}.beta`, which will bring the very latest
@@ -21,8 +10,8 @@
 # Namida Configuration with Nix
 
 This module uses JQ to safely merge all options defined within this module,
-while other settings remain untouched. If an option is not available yet, you
-may define it directly by knowing the json key at `programs.namida.settingsRaw`,
+while other settings remain untouched. If an option is not provided, you may
+define it directly by knowing the json key at `programs.namida.settingsRaw`,
 note that `enable` must be set to true for it to work
 
 Namida supports more than just its default icon(at least the home manager
