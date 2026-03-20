@@ -110,3 +110,27 @@ Default: light: `"#9c99c1ff"` dark: `"#4e4c72ff"`
 ## Customization
 
 > [!TODO]
+
+## Other
+
+> [!TODO]
+
+### Player
+
+> [!TODO]
+
+### Language
+
+> [!TODO]
+
+### cacheSizes
+
+> [!TODO]
+
+### Backup
+
+> [!TODO]
+
+## Experimentals
+
+> [!TODO]
