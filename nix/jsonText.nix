@@ -9,6 +9,8 @@ let
         customization
         indexer
         language
+        backup
+        cacheSizes
         ;
     };
 in

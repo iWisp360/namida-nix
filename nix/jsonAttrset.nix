@@ -4,6 +4,8 @@
   customization,
   indexer,
   language,
+  backup,
+  cacheSizes,
 }:
 let
   availableLanguages = import ./availableLanguages.nix;
@@ -19,8 +21,6 @@ in
   hideStatusBarInExpandedMiniplayer = false;
   displayFavouriteButtonInNotification = false;
   #################################
-  # backup related options TODO
-
   # misc options TODO covers extras and advanced sections
   language.code = availableLanguages.${language};
 }
@@ -114,6 +114,15 @@ in
   displayAudioInfoMiniplayer = miniPlayer.customization.displayAudioInfo;
   displayArtistBeforeTitle = miniPlayer.customization.artistBeforeTitle;
 })
+// (with backup; {
+  defaultBackupLocation_v2 = location;
+  autoBackupIntervalDays = autoBackupInterval;
+})
+// (with cacheSizes; {
+  videosMaxCacheInMB = video;
+  audiosMaxCacheInMB = audio;
+  imagesMaxCacheInMB = image;
+})
 
 # libraryTabs = ;
 # homePageItems = ;
@@ -154,8 +163,6 @@ in
 # ignoreCommonPrefixForTypes = ;
 # commonPrefixes = ;
 # playlistSearchFilter = ;
-# defaultBackupLocation_v2 = ;
-# autoBackupIntervalDays = ;
 # defaultFolderStartupLocation = ;
 # defaultFolderStartupLocationVideos = ;
 # enableFoldersHierarchy = ;

@@ -74,6 +74,8 @@ in
           indexer = import ./indexer.nix { inherit types mkOption config; };
           customization = import ./customization.nix { inherit types mkOption; };
           language = import ./language.nix { inherit types mkOption osConfig; };
+          backup = import ./backup.nix { inherit config types mkOption; };
+          cacheSizes = import ./cacheSizes.nix { inherit types mkOption; };
         };
       };
     };
