@@ -70,7 +70,6 @@ in
         options = {
           enable = mkEnableOption "Namida configuration through home manager";
           appearance = import ./appearance.nix { inherit types mkOption; };
-          playback = import ./playback.nix { inherit types mkOption mkEnableOption; };
           indexer = import ./indexer.nix { inherit types mkOption config; };
           customization = import ./customization.nix { inherit types mkOption; };
           language = import ./language.nix { inherit types mkOption osConfig; };
@@ -93,7 +92,7 @@ in
           ''
             mkdir -p ${config.home.homeDirectory}/.namida
             ${helpers.settingsWriteScript "${config.home.homeDirectory}/.namida/namida_settings.json" (
-              import ./jsonText.nix { inherit cfg lib; }
+              import ./jsonText.nix { inherit cfg lib jq; }
             )}
 
             ${helpers.settingsWriteScript "${config.home.homeDirectory}/.namida/namida_settings_extra.json" (

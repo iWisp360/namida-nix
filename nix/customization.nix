@@ -45,7 +45,7 @@ mkOption {
               };
 
               disposition = mkOption {
-                type = types.listOf types.enum tabs;
+                type = types.listOf (types.enum tabs);
 
                 default = [
                   "home"
@@ -91,13 +91,13 @@ mkOption {
       };
 
       borderRadius = mkOption {
-        type = types.float;
+        type = types.addCheck types.float (x: x > 0.0);
         default = 1.0;
         description = "Multiplier for borders radius";
       };
 
       fontScale = mkOption {
-        type = types.float;
+        type = types.addCheck types.float (x: x > 0.0);
         default = 0.9;
         description = "Define font size";
       };
@@ -442,7 +442,7 @@ mkOption {
                     type = types.submodule {
                       options = {
                         scaleMultiplier = mkOption {
-                          type = types.float;
+                          type = types.addCheck types.float (x: x > 0.0);
                           default = 1.0;
                           description = "Multiplier for artwork gestures";
                         };

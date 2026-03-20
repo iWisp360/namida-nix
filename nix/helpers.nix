@@ -1,4 +1,7 @@
-{ lib, jq }:
+{
+  lib,
+  jq,
+}:
 rec {
   intToFloat = num: num + 0.0;
   pow2 = num: if num == 0 then 1 else 2 * pow2 (num - 1);

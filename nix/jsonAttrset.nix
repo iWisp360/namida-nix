@@ -7,10 +7,11 @@
   backup,
   cacheSizes,
   player,
+  jq,
 }:
 let
   availableLanguages = import ./availableLanguages.nix;
-  helpers = import ./helpers.nix { inherit lib; };
+  helpers = import ./helpers.nix { inherit lib jq; };
   f = helpers.intToFloat;
 in
 {
@@ -41,8 +42,8 @@ in
   trackGenresSeparators = genresSeparators;
   cacheArtworks = artworkCache.enable;
   uniqueArtworkHash = artworkCache.hash;
-  directoriesToScan = builtins.map (dir: { source = dir; }) folders.include;
-  directoriesToExclude = builtins.map (dir: { source = dir; }) folders.exclude;
+  directoriesToScan = builtins.map (source: { inherit source; }) folders.include;
+  directoriesToExclude = builtins.map (source: { inherit source; }) folders.exclude;
   preventDuplicatedTracks = preventDuplicates;
   extractFeatArtistFromTitle = featuredArtistsFromTitle;
 })
@@ -128,6 +129,6 @@ in
   prioritizeEmbeddedLyrics = lyrics.prioritizeEmbedded;
   lyricsSource = lyrics.source;
   stretchLyricsDuration = lyrics.stretchDuration;
-  imageSourceAlbum = imagesSources.album;
-  imageSourceArtist = imagesSources.album;
+  imageSourceAlbum = imagesSources.albums;
+  imageSourceArtist = imagesSources.artists;
 })

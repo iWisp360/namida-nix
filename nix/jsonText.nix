@@ -1,10 +1,15 @@
-{ cfg, lib }:
+{
+  cfg,
+  lib,
+  jq,
+}:
 let
   baseConfiguration =
     with cfg.settings;
     import ./jsonAttrset.nix {
       inherit
         lib
+        jq
         appearance
         customization
         indexer
