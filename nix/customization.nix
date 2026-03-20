@@ -40,8 +40,8 @@ mkOption {
           type = types.submodule {
             options = {
               defaultTab = mkOption {
-                type = types.enum tabs ++ [ "auto" ];
-                default = "auto";
+                type = types.enum tabs;
+                default = "tracks";
               };
 
               disposition = mkOption {

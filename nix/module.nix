@@ -3,12 +3,13 @@
   lib,
   home-manager,
   pkgs,
-  jq,
   osConfig,
+  jq,
   ...
 }:
 let
   cfg = config.programs.namida;
+  helpers = import ./helpers.nix { inherit lib jq; };
 in
 {
   options.programs.namida = with lib; {
@@ -85,22 +86,21 @@ in
     home = {
       packages = [ cfg.package ];
       activation.namidaPatchConf = lib.mkIf cfg.settings.enable (
-        home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          HOME_MANAGER_CONFIGS=/tmp/settings.json
-          NAMIDA_CONFIGS=${config.home.homeDirectory}/.namida/namida_settings.json
-          MERGED_CONFIGS=/tmp/new_settings.json
+        home-manager.lib.hm.dag.entryAfter
+          [
+            "writeBoundary"
+          ]
+          (
+            (helpers.settingsWriteScript "${config.home.homeDirectory}/.namida/namida_settings.json" (
+              import ./jsonText.nix { inherit cfg lib; }
+            ))
 
-          echo '${import ./jsonText.nix { inherit cfg lib; }}' > $HOME_MANAGER_CONFIGS
-
-          if [ -f $NAMIDA_CONFIGS ]; then
-            ${jq}/bin/jq -s ".[0] * .[1]" $NAMIDA_CONFIGS $HOME_MANAGER_CONFIGS > $MERGED_CONFIGS
-            cp $MERGED_CONFIGS $NAMIDA_CONFIGS -v
-          else
-            cp $HOME_MANAGER_CONFIGS $NAMIDA_CONFIGS
-          fi
-
-          rm $HOME_MANAGER_CONFIGS $MERGED_CONFIGS -f
-        ''
+              (
+                helpers.settingsWriteScript "${config.home.homeDirectory}/.namida/namida_settings_extra.json" (
+                  import ./jsonTextExtras.nix { inherit cfg lib; }
+                )
+              )
+          )
       );
     };
   };
