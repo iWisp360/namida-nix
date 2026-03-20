@@ -90,17 +90,16 @@ in
           [
             "writeBoundary"
           ]
-          (
-            (helpers.settingsWriteScript "${config.home.homeDirectory}/.namida/namida_settings.json" (
+          ''
+            mkdir -p ${config.home.homeDirectory}/.namida
+            ${helpers.settingsWriteScript "${config.home.homeDirectory}/.namida/namida_settings.json" (
               import ./jsonText.nix { inherit cfg lib; }
-            ))
+            )}
 
-              (
-                helpers.settingsWriteScript "${config.home.homeDirectory}/.namida/namida_settings_extra.json" (
-                  import ./jsonTextExtras.nix { inherit cfg lib; }
-                )
-              )
-          )
+            ${helpers.settingsWriteScript "${config.home.homeDirectory}/.namida/namida_settings_extra.json" (
+              import ./jsonTextExtras.nix { inherit cfg lib; }
+            )}
+          ''
       );
     };
   };
