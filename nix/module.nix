@@ -14,10 +14,11 @@ in
 {
   options.programs.namida = with lib; {
     enable = mkEnableOption "Namida";
+    useBetaPackage = mkEnableOption "Namida Snapshots(Beta)";
 
     package = mkOption {
       type = types.package;
-      default = pkgs.callPackage ../default.nix {
+      default = pkgs.callPackage (if cfg.useBetaPackage then ../beta.nix else ../default.nix) {
         inherit (cfg) icon;
       };
 
