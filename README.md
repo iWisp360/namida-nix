@@ -10,6 +10,8 @@ module for configuration if you want to.
 > ready to import modules to your `home.nix`, if you already didn't do so,
 > checkout
 > [these docs](https://nix-community.github.io/home-manager/index.xhtml#ch-nix-flakes)
+>
+> Feel free to skip steps you have already done before
 
 1. Enable unfree nixpkgs
 
@@ -18,19 +20,39 @@ module for configuration if you want to.
    nixpkgs.config.allowUnfree = true;
    ```
 
-2. Add to your flake inputs
+2. Add Garnix to your substituters
+
+   > [!NOTE]
+   > Namida depends on wpewebkit, which is a WebKit port, and it's a resource
+   > hog when being compiled, requiring a good CPU and lots of RAM for
+   > compiling, so I recommend setting up Garnix
+
+   ```nix
+   # configuration.nix
+   nix = {
+       substituters = [
+           "https://cache.garnix.io"
+       ];
+
+       trusted-public-keys = [
+           "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+       ];
+   };
+   ```
+
+   > [!NOTE]
+   > See [https://garnix.io/docs/ci/caching]
+
+3. Add to your flake inputs
 
    ```nix
    # flake.nix
    inputs = {
-       namida = {
-           url = "git+https://codeberg.org/iWisp360/namida-nix";
-           inputs.nixpkgs.follows = "nixpkgs";
-       };
+       namida.url = "git+https://codeberg.org/iWisp360/namida-nix";
    };
    ```
 
-3. Import the home manager module
+4. Import the home manager module
 
    ```nix
    # home.nix
@@ -39,7 +61,7 @@ module for configuration if you want to.
    ];
    ```
 
-4. Enable namida
+5. Enable namida
 
    ```nix
    # home.nix
