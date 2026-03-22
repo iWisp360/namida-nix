@@ -20,9 +20,9 @@ in
     package = mkOption {
       type = types.package;
       default =
-        inputs.namida.packages.${pkgs.stdenv.hostPlatform.system}."${
+        inputs.self.packages.${pkgs.stdenv.hostPlatform.system}."${
           if cfg.useBetaPackage then "beta" else "default"
-        }${if cfg.icon != "default" then "" else "-${cfg.icon}"}";
+        }${if cfg.icon == "default" then "" else "-${cfg.icon}"}";
 
       description = "Namida package to use";
     };
