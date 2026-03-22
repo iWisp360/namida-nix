@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:iWisp360/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
   };
 
@@ -26,6 +26,8 @@
       packages.${system} = {
         default = pkgs.callPackage ./default.nix { };
         beta = pkgs.callPackage ./beta.nix { };
+        webkitgtk6 = pkgs.callPackage ./webkitgtk6.nix { };
+        webkitgtk4 = pkgs.callPackage ./webkitgtk4.nix { };
       };
     };
 }

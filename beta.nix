@@ -22,7 +22,8 @@
   libwpe,
   libsoup_3,
   libsecret,
-  wpewebkit,
+  callPackage,
+  wpewebkit ? callPackage ./wpewebkit.nix { },
 }:
 let
   buildId = "260319033";
