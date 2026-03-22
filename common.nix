@@ -25,6 +25,7 @@
   variant,
   version,
   src,
+  ...
 }:
 let
   iconsUrl = "https://codeberg.org/iWisp360/namida-icons";
