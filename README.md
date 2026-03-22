@@ -1,13 +1,13 @@
-# Namida player for Nix/Home Manager
-
 <div align=center>
+
+# Namida player for Nix/Home Manager
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](/iWisp360/namida-nix/issues)
 
-</div>
-
 This flake brings you a native derivation for Namida, as well as a home manager
 module for configuration if you want to.
+
+</div>
 
 ## Installation
 
@@ -47,7 +47,7 @@ module for configuration if you want to.
    ```
 
    > [!NOTE]
-   > See [https://garnix.io/docs/ci/caching]
+   > See https://garnix.io/docs/ci/caching
 
 3. Add to your flake inputs
 
