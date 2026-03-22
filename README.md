@@ -1,5 +1,11 @@
 # Namida player for Nix/Home Manager
 
+<div align=center>
+
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](/iWisp360/namida-nix/issues)
+
+</div>
+
 This flake brings you a native derivation for Namida, as well as a home manager
 module for configuration if you want to.
 
