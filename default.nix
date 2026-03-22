@@ -22,7 +22,6 @@
 }:
 let
   buildId = "260213222";
-  version = "5.7.2-beta";
   iconsUrl = "https://codeberg.org/iWisp360/namida-icons";
   icons = fetchgit {
     url = "${iconsUrl}";
@@ -30,11 +29,12 @@ let
     hash = "sha256-Q4Jd5n6aIfRakJTr+K7lrbOPADdiMz29InAkUwBoFac=";
   };
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   name = "namida";
-  inherit version;
+  pname = "namida${if icon != "default" then "-${icon}" else ""}";
+  version = "5.7.2-beta";
   src = fetchurl {
-    url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildId}/namida-v${version}.linux.tar.gz";
+    url = "https://github.com/namidaco/namida-snapshots/releases/download/${finalAttrs.version}%2B${buildId}/namida-v${finalAttrs.version}.linux.tar.gz";
     hash = "sha256-/4YfGraIYUWBdqR9GKCfIXQXRK/ncNjQL06BfGUbLlg=";
   };
 
@@ -111,4 +111,4 @@ stdenv.mkDerivation rec {
       "x86_64-linux"
     ];
   };
-}
+})
