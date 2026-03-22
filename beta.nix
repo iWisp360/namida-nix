@@ -35,8 +35,8 @@ let
   };
 in
 stdenv.mkDerivation (finalAttrs: {
-  name = "namida";
-  pname = "namida${if icon != "default" then "-${icon}" else ""}-beta";
+  name = "namida${if icon != "default" then "-${icon}" else ""}-beta";
+  pname = "namida";
   version = "5.8.5-beta";
   src = fetchurl {
     url = "https://github.com/namidaco/namida-snapshots/releases/download/${finalAttrs.version}%2B${buildId}/namida-v${finalAttrs.version}.linux.tar.gz";

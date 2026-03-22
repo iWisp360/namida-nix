@@ -30,8 +30,8 @@ let
   };
 in
 stdenv.mkDerivation (finalAttrs: {
-  name = "namida";
-  pname = "namida${if icon != "default" then "-${icon}" else ""}";
+  name = "namida${if icon != "default" then "-${icon}" else ""}";
+  pname = "namida";
   version = "5.7.2-beta";
   src = fetchurl {
     url = "https://github.com/namidaco/namida-snapshots/releases/download/${finalAttrs.version}%2B${buildId}/namida-v${finalAttrs.version}.linux.tar.gz";
