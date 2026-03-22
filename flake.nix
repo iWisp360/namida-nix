@@ -26,8 +26,6 @@
       packages.${system} = {
         default = pkgs.callPackage ./default.nix { };
         beta = pkgs.callPackage ./beta.nix { };
-        webkitgtk6 = pkgs.callPackage ./webkitgtk6.nix { };
-        webkitgtk4 = pkgs.callPackage ./webkitgtk4.nix { };
       };
     };
 }
