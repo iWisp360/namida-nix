@@ -4,6 +4,7 @@
   home-manager,
   pkgs,
   osConfig,
+  inputs,
   jq,
   ...
 }:
@@ -18,9 +19,10 @@ in
 
     package = mkOption {
       type = types.package;
-      default = pkgs.callPackage (if cfg.useBetaPackage then ../beta.nix else ../default.nix) {
-        inherit (cfg) icon;
-      };
+      default =
+        inputs.namida.packages.${pkgs.stdenv.hostPlatform.system}."${
+          if cfg.useBetaPackage then "beta" else "default"
+        }${if cfg.icon != "default" then "" else "-${cfg.icon}"}";
 
       description = "Namida package to use";
     };
