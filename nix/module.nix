@@ -28,21 +28,7 @@ in
     };
 
     icon = mkOption {
-      type = types.enum [
-        "tired"
-        "spooky"
-        "space"
-        "shade"
-        "original"
-        "namiween"
-        "namichin"
-        "hollow"
-        "glowy"
-        "enhanced"
-        "eddy"
-        "cutsie"
-        "default"
-      ];
+      type = types.enum ((import ./icons.nix) ++ [ "default" ]);
 
       default = "default";
       description = "Icon to use";

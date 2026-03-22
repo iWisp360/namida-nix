@@ -1,0 +1,14 @@
+[
+  "tired"
+  "spooky"
+  "space"
+  "shade"
+  "original"
+  "namiween"
+  "namichin"
+  "hollow"
+  "glowy"
+  "enhanced"
+  "eddy"
+  "cutsie"
+]
