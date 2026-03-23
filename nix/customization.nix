@@ -437,6 +437,24 @@ mkOption {
                     };
                   };
 
+                  waveformBarsCount = mkOption {
+                    type = types.ints.between 40 400;
+                    default = 80;
+                    description = "Amount of bars for the waveform of the track";
+                  };
+
+                  displayAudioInfo = mkOption {
+                    type = types.bool;
+                    default = false;
+                    description = "Whether to display audio info in player";
+                  };
+
+                  artistBeforeTitle = mkOption {
+                    type = types.bool;
+                    default = true;
+                    description = "Whether to display artist before title";
+                  };
+
                   artworkGestures = mkOption {
                     default = { };
                     type = types.submodule {
@@ -497,24 +515,6 @@ mkOption {
                           };
                       };
                     };
-                  };
-
-                  waveformBarsCount = mkOption {
-                    type = types.ints.between 40 400;
-                    default = 80;
-                    description = "Amount of bars for the waveform of the track";
-                  };
-
-                  displayAudioInfo = mkOption {
-                    type = types.bool;
-                    default = false;
-                    description = "Whether to display audio info in player";
-                  };
-
-                  artistBeforeTitle = mkOption {
-                    type = types.bool;
-                    default = true;
-                    description = "Whether to display artist before title";
                   };
                 };
               };
