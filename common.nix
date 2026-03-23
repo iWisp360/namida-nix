@@ -18,10 +18,6 @@
   lib,
   unar,
   icon ? "default",
-  libwpe,
-  libsoup_3,
-  libsecret,
-  wpewebkit ? null,
   variant,
   version,
   src,
@@ -57,14 +53,8 @@ stdenv.mkDerivation {
     harfbuzz
     libcxx
     unar
-    libwpe
     audiowaveform
     ffmpeg
-    libsoup_3
-    libsecret
-  ]
-  ++ lib.optionals (variant == "beta") [
-    wpewebkit
   ];
 
   sourceRoot = ".";
@@ -128,5 +118,7 @@ stdenv.mkDerivation {
     platforms = [
       "x86_64-linux"
     ];
+
+    broken = variant == "beta";
   };
 }
