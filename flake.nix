@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
+    wpewebkit.url = "github:iWisp360/wpewebkit";
   };
 
   outputs =
@@ -45,7 +46,9 @@
 
       packages.${system} = {
         default = pkgs.callPackage ./default.nix { };
-        beta = pkgs.callPackage ./beta.nix { };
+        beta = pkgs.callPackage ./beta.nix {
+          wpewebkit = inputs.wpewebkit.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        };
       }
       // (mkIconPkgs "beta")
       // (mkIconPkgs "default");

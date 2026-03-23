@@ -22,6 +22,9 @@
   version,
   src,
   postPatch ? null,
+  libappindicator,
+  libdbusmenu-gtk3,
+  wpewebkit ? null,
   ...
 }:
 let
@@ -56,6 +59,9 @@ stdenv.mkDerivation {
     unar
     audiowaveform
     ffmpeg
+    libappindicator
+    libdbusmenu-gtk3
+    wpewebkit
   ];
 
   sourceRoot = ".";
@@ -68,7 +74,6 @@ stdenv.mkDerivation {
     mkdir -p $out/{bin,lib}
     cp * $out -rv
     rm -r $out/bin/*
-    ${if variant == "beta" then "ln -s $out/namida_bin $out/bin/namida_bin" else ""}
     ln -s $out/namida $out/bin/namida
       
     mkdir -p $out/share/icons/hicolor/{128x128,256x256,512x512}/apps
@@ -113,6 +118,6 @@ stdenv.mkDerivation {
       "x86_64-linux"
     ];
 
-    broken = variant == "beta";
+    broken = variant != "beta";
   };
 }

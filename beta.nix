@@ -16,7 +16,6 @@ callPackage ./common.nix (
         --replace-fail "LIBGL_ALWAYS_SOFTWARE=1" "LIBGL_ALWAYS_SOFTWARE=0"
     '';
 
-    wpewebkit = callPackage ./wpewebkit.nix { };
     variant = "beta";
     inherit version;
   }
