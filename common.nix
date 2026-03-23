@@ -21,6 +21,7 @@
   variant,
   version,
   src,
+  postPatch ? null,
   ...
 }:
 let
@@ -59,14 +60,7 @@ stdenv.mkDerivation {
 
   sourceRoot = ".";
 
-  postPatch =
-    if variant == "beta" then
-      ''
-        substituteInPlace namida \
-          --replace-fail "LIBGL_ALWAYS_SOFTWARE=1" "LIBGL_ALWAYS_SOFTWARE=0"
-      ''
-    else
-      "";
+  inherit postPatch;
 
   installPhase = ''
     runHook preInstall
