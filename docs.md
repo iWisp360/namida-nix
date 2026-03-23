@@ -2,10 +2,12 @@
 > TODO, check ./nix/module.nix meanwhile
 
 > [!NOTE]
-> Namida is in constant development, and to align with it, I provided
-> `inputs.namida.packages.${system}.beta`, which will bring the very latest
-> snapshot version, instead of `5.7.2-beta`. You can set programs.namida.package
-> or add it directly to your systemPackages
+> Namida is in constant development, and to align with it, I provided the option
+> `programs.namida.useBetaPackage`, which, when set to true, will bring the very
+> latest snapshot version, instead of `5.7.2-beta`.
+
+> [!WARNING]
+> All beta packages are marked as broken!
 
 # Namida Configuration with Nix
 
