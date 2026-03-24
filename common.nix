@@ -146,6 +146,6 @@ stdenv.mkDerivation {
       "x86_64-linux"
     ];
 
-    broken = ytSupport;
+    # broken = ytSupport;
   };
 }
