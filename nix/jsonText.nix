@@ -17,6 +17,7 @@ let
         backup
         cacheSizes
         player
+        misc
         ;
     };
 in

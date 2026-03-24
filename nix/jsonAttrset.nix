@@ -7,6 +7,7 @@
   backup,
   cacheSizes,
   player,
+  misc,
   jq,
 }:
 let
@@ -131,4 +132,8 @@ in
   stretchLyricsDuration = lyrics.stretchDuration;
   imageSourceAlbum = imagesSources.albums;
   imageSourceArtist = imagesSources.artists;
+})
+// (with misc; {
+  desktopTitlebar = windowDecorations.enable;
+  desktopTitlebarType = windowDecorations.type;
 })

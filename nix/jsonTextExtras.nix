@@ -1,6 +1,6 @@
 { cfg, lib }:
 let
-  baseConfiguration = import ./jsonAttrsetExtras.nix { inherit (cfg.settings) customization; };
+  baseConfiguration = import ./jsonAttrsetExtras.nix { inherit (cfg.settings) customization misc; };
 in
 builtins.toJSON (
   if cfg.settingsRaw.enable && cfg.settingsRaw.merge then

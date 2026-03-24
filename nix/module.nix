@@ -66,6 +66,7 @@ in
           backup = import ./backup.nix { inherit config types mkOption; };
           cacheSizes = import ./cacheSizes.nix { inherit types mkOption; };
           player = import ./player.nix { inherit types mkOption; };
+          misc = import ./misc.nix { inherit types mkOption; };
         };
       };
     };
