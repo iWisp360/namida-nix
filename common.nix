@@ -27,7 +27,6 @@
   libwpe-fdo,
   at-spi2-core,
   fontconfig,
-  buildFHSEnv,
   ytSupport,
   ...
 }:
@@ -64,78 +63,67 @@ let
     hash = "sha256-Q4Jd5n6aIfRakJTr+K7lrbOPADdiMz29InAkUwBoFac=";
   };
 
-  namida-drv = stdenv.mkDerivation {
-    name = "namida${if icon != "default" then "-${icon}" else ""}-${variant}";
-    pname = "namida";
-    inherit src version;
-
-    nativeBuildInputs = [
-      autoPatchelfHook
-    ];
-
-    buildInputs = deps;
-
-    sourceRoot = ".";
-
-    postPatch = ''
-      substituteInPlace share/applications/namida.desktop \
-        --replace-fail "TryExec=namida" "TryExec=${namida-drv.name}" \
-        --replace-fail "Exec=namida" "Exec=${namida-drv.name}"
-    '';
-
-    installPhase = ''
-      runHook preInstall
-
-      mkdir -p $out/{bin,lib}
-      cp * $out -rv
-      rm -rv $out/bin/*
-      ${
-        if ytSupport then
-          ''
-            rm -rv $out/lib/*wpe*
-            rm -rv $out/lib/*WPE*
-            rm -rv $out/lib/MiniBrowser
-          ''
-        else
-          ""
-      }
-      ln -sv $out/namida $out/bin/namida
-
-      ln -sv ${audiowaveform}/bin/audiowaveform $out/bin/audiowaveform
-        
-      mkdir -p $out/share/icons/hicolor/{128x128,256x256,512x512}/apps
-      rm $out/share/icons/namida.png
-      if [ "${icon}" = "default" ]; then
-        mv $out/share/icons/namida_128.png $out/share/icons/hicolor/128x128/apps/namida.png
-        mv $out/share/icons/namida_256.png $out/share/icons/hicolor/256x256/apps/namida.png
-        mv $out/share/icons/namida_512.png $out/share/icons/hicolor/512x512/apps/namida.png
-      else
-        rm $out/share/icons/namida_128.png
-        rm $out/share/icons/namida_256.png
-        rm $out/share/icons/namida_512.png
-
-        unar ${icons}/${icon}.tar.xz
-
-        mv ${icon}/namida_icon_${icon}.128.png $out/share/icons/hicolor/128x128/apps/namida.png
-        mv ${icon}/namida_icon_${icon}.256.png $out/share/icons/hicolor/256x256/apps/namida.png
-        mv ${icon}/namida_icon_${icon}.512.png $out/share/icons/hicolor/512x512/apps/namida.png
-      fi
-
-      runHook postInstall
-    '';
-
-    postFixup = ''
-      wrapProgram $out/bin/namida \
-        --set FONTCONFIG_FILE "${fontconfig.out}/etc/fonts/fonts.conf" \
-        --set FONTCONFIG_PATH "${fontconfig.out}/etc/fonts" \
-        --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath deps}"
-    '';
-  };
 in
-buildFHSEnv {
-  inherit (namida-drv) name;
+stdenv.mkDerivation {
+  name = "namida${if icon != "default" then "-${icon}" else ""}-${variant}";
+  pname = "namida";
+  inherit src version;
 
-  targetPkgs = _: deps ++ [ namida-drv ];
+  nativeBuildInputs = [
+    autoPatchelfHook
+  ];
+
+  buildInputs = deps;
+
+  sourceRoot = ".";
+
+  installPhase = ''
+    runHook preInstall
+
+    mkdir -p $out/{bin,lib}
+    cp * $out -rv
+    rm -rv $out/bin/*
+    ${
+      if ytSupport then
+        ''
+          rm -rv $out/lib/*wpe*
+          rm -rv $out/lib/*WPE*
+          rm -rv $out/lib/MiniBrowser
+        ''
+      else
+        ""
+    }
+    ln -sv $out/namida $out/bin/namida
+
+    ln -sv ${audiowaveform}/bin/audiowaveform $out/bin/audiowaveform
+      
+    mkdir -p $out/share/icons/hicolor/{128x128,256x256,512x512}/apps
+    rm $out/share/icons/namida.png
+    if [ "${icon}" = "default" ]; then
+      mv $out/share/icons/namida_128.png $out/share/icons/hicolor/128x128/apps/namida.png
+      mv $out/share/icons/namida_256.png $out/share/icons/hicolor/256x256/apps/namida.png
+      mv $out/share/icons/namida_512.png $out/share/icons/hicolor/512x512/apps/namida.png
+    else
+      rm $out/share/icons/namida_128.png
+      rm $out/share/icons/namida_256.png
+      rm $out/share/icons/namida_512.png
+
+      unar ${icons}/${icon}.tar.xz
+
+      mv ${icon}/namida_icon_${icon}.128.png $out/share/icons/hicolor/128x128/apps/namida.png
+      mv ${icon}/namida_icon_${icon}.256.png $out/share/icons/hicolor/256x256/apps/namida.png
+      mv ${icon}/namida_icon_${icon}.512.png $out/share/icons/hicolor/512x512/apps/namida.png
+    fi
+
+    runHook postInstall
+  '';
+
+  postFixup = ''
+    wrapProgram $out/bin/namida \
+      --set FONTCONFIG_FILE "${fontconfig.out}/etc/fonts/fonts.conf" \
+      --set FONTCONFIG_PATH "${fontconfig.out}/etc/fonts" \
+      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath deps}"
+  '';
 
   meta = {
     description = "A Beautiful and Feature-rich Music & Video Player with Youtube Support, Built in Flutter";
@@ -158,6 +146,6 @@ buildFHSEnv {
       "x86_64-linux"
     ];
 
-    # broken = ytSupport;
+    broken = ytSupport;
   };
 }
