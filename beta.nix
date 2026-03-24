@@ -1,22 +1,27 @@
-{ callPackage, fetchurl, ... }@args:
+{
+  callPackage,
+  fetchurl,
+  ytSupport ? false,
+  wpewebkit ? null,
+  ...
+}:
 let
-  buildId = "260319033";
-  version = "5.8.5-beta";
+  buildId = "260324012";
+  version = "5.8.7-beta";
 in
-callPackage ./common.nix (
-  args
-  // {
-    src = fetchurl {
-      url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildId}/namida-v${version}.linux.tar.gz";
-      hash = "sha256-5aDau+QMdcilts4OQGAAccCZHUOdY99+tTOkqdifZcY=";
-    };
+callPackage ./common.nix {
+  inherit ytSupport wpewebkit;
+  src = fetchurl {
+    url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildId}/namida-v${version}${
+      if ytSupport then "_login" else ""
+    }.linux.tar.gz";
+    hash =
+      if ytSupport then
+        "sha256-ldIXM3SCIUB3VnLYuCl7/xzokS65O28UdpmWhVkUJ3s="
+      else
+        "sha256-eQyTs11l8K8WF75RvAFKg+k77P32t2VUfRB2YJWFi9Y=";
+  };
 
-    postPatch = ''
-      substituteInPlace namida \
-        --replace-fail "LIBGL_ALWAYS_SOFTWARE=1" "LIBGL_ALWAYS_SOFTWARE=0"
-    '';
-
-    variant = "beta";
-    inherit version;
-  }
-)
+  variant = "beta";
+  inherit version;
+}

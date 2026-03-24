@@ -1,17 +1,27 @@
-{ callPackage, fetchurl, ... }@args:
+{
+  callPackage,
+  fetchurl,
+  ytSupport ? false,
+  wpewebkit ? null,
+  ...
+}:
 let
-  buildId = "260213222";
-  version = "5.7.2-beta";
+  buildId = "260324012";
+  version = "5.8.7-beta";
 in
-callPackage ./common.nix (
-  args
-  // {
-    src = fetchurl {
-      url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildId}/namida-v${version}.linux.tar.gz";
-      hash = "sha256-/4YfGraIYUWBdqR9GKCfIXQXRK/ncNjQL06BfGUbLlg=";
-    };
+callPackage ./common.nix {
+  inherit ytSupport wpewebkit;
+  src = fetchurl {
+    url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildId}/namida-v${version}${
+      if ytSupport then "_login" else ""
+    }.linux.tar.gz";
+    hash =
+      if ytSupport then
+        "sha256-ldIXM3SCIUB3VnLYuCl7/xzokS65O28UdpmWhVkUJ3s="
+      else
+        "sha256-eQyTs11l8K8WF75RvAFKg+k77P32t2VUfRB2YJWFi9Y=";
+  };
 
-    variant = "stable";
-    inherit version;
-  }
-)
+  variant = "stable";
+  inherit version;
+}

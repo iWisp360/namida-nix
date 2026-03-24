@@ -36,21 +36,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1774304105,
-        "narHash": "sha256-GcoIHdkDwp4Bwwc3cxQXTMYJtw19zDy0PN/l52ZGvFA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "d13b002d18fb43ad47b7e0d6e0b70f1aa5f34711",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1774244481,
         "narHash": "sha256-4XfMXU0DjN83o6HWZoKG9PegCvKvIhNUnRUI19vzTcQ=",
         "owner": "NixOS",
@@ -74,14 +59,16 @@
     },
     "wpewebkit": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1774304912,
-        "narHash": "sha256-0DGaY3TgunpEVw/4ohBwwA7kbjZTBNy7itBm29J5KNY=",
+        "lastModified": 1774319514,
+        "narHash": "sha256-7MTNisXkWyO/6ShOiTfTOFsUqy+eqFDj/hifqKSK+A0=",
         "owner": "iWisp360",
         "repo": "wpewebkit",
-        "rev": "bdb848c6df23448ffe9823aebbe02a53203bd6ec",
+        "rev": "2473eb73154d2321bd9b3cf856fcc66d68bcf3c1",
         "type": "github"
       },
       "original": {

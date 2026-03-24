@@ -1,8 +1,11 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     home-manager.url = "github:nix-community/home-manager";
-    wpewebkit.url = "github:iWisp360/wpewebkit";
+    wpewebkit = {
+      url = "github:iWisp360/wpewebkit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -27,6 +30,24 @@
           name = "${variant}-${name}";
           inherit value;
         }) pkgSet;
+
+      mkIconYtPkgs =
+        variant:
+        let
+          pkgSet = lib.genAttrs icons (
+            icon:
+            pkgs.callPackage ./${variant}.nix {
+              inherit icon wpewebkit;
+              ytSupport = true;
+            }
+          );
+        in
+        lib.mapAttrs' (name: value: {
+          name = "${variant}-yt-${name}";
+          inherit value;
+        }) pkgSet;
+
+      wpewebkit = inputs.wpewebkit.packages.${pkgs.stdenv.hostPlatform.system}.default;
     in
     {
       homeManagerModules.namida =
@@ -46,12 +67,21 @@
 
       packages.${system} = {
         default = pkgs.callPackage ./default.nix { };
-        beta = pkgs.callPackage ./beta.nix {
-          wpewebkit = inputs.wpewebkit.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        beta = pkgs.callPackage ./beta.nix { };
+        default-yt = pkgs.callPackage ./default.nix {
+          ytSupport = true;
+          inherit wpewebkit;
+        };
+
+        beta-yt = pkgs.callPackage ./beta.nix {
+          ytSupport = true;
+          inherit wpewebkit;
         };
       }
       // (mkIconPkgs "beta")
-      // (mkIconPkgs "default");
+      // (mkIconPkgs "default")
+      // (mkIconYtPkgs "beta")
+      // (mkIconYtPkgs "default");
     };
 
   nixConfig = {
