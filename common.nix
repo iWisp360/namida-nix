@@ -20,7 +20,6 @@
   variant,
   version,
   src,
-  postPatch ? null,
   libappindicator,
   libdbusmenu-gtk3,
   libsecret,
@@ -78,7 +77,11 @@ let
 
     sourceRoot = ".";
 
-    inherit postPatch;
+    postPatch = ''
+      substituteInPlace share/applications/namida.desktop \
+        --replace-fail "TryExec=namida" "TryExec=${namida-drv.name}" \
+        --replace-fail "Exec=namida" "Exec=${namida-drv.name}"
+    '';
 
     installPhase = ''
       runHook preInstall
