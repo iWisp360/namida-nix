@@ -3,6 +3,12 @@ mkOption {
   default = { };
   type = types.submodule {
     options = {
+      gaplessPlayback = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Whether to enable Gapless Playback";
+      };
+
       lyrics = mkOption {
         default = { };
         type = types.submodule {
