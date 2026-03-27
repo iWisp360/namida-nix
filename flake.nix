@@ -1,11 +1,8 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
-    wpewebkit = {
-      url = "github:iWisp360/wpewebkit";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    wpewebkit.url = "github:iWisp360/wpewebkit";
   };
 
   outputs =
