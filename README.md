@@ -26,30 +26,7 @@ module for configuration if you want to.
    nixpkgs.config.allowUnfree = true;
    ```
 
-2. Add Garnix to your substituters
-
-   > [!NOTE]
-   > Namida depends on wpewebkit, which is a WebKit port, and it's a resource
-   > hog when being compiled, requiring a good CPU and lots of RAM for
-   > compiling, so I recommend setting up Garnix
-
-   ```nix
-   # configuration.nix
-   nix = {
-       substituters = [
-           "https://cache.garnix.io"
-       ];
-
-       trusted-public-keys = [
-           "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-       ];
-   };
-   ```
-
-   > [!NOTE]
-   > See https://garnix.io/docs/ci/caching
-
-3. Add to your flake inputs
+2. Add to your flake inputs
 
    ```nix
    # flake.nix
@@ -58,7 +35,7 @@ module for configuration if you want to.
    };
    ```
 
-4. Import the home manager module
+3. Import the home manager module
 
    ```nix
    # home.nix
@@ -67,7 +44,7 @@ module for configuration if you want to.
    ];
    ```
 
-5. Enable namida
+4. Enable namida
 
    ```nix
    # home.nix
@@ -83,33 +60,29 @@ module for configuration if you want to.
 > all, you can add this to your packages
 >
 > ```nix
-> (import (builtins.fetchGit { 
+> (pkgs.callPackage (builtins.fetchGit { 
 >   url = "https://codeberg.org/iWisp360/namida-nix"; 
->   rev = "85ecceaff6bfa6c0409dff05ceee8d0b21adaaf0"; # latest revision where nix/default.nix got modified
->  }))
+>   rev = "f3cc18e0ecaf6b4b01e6a1609b3e5f381fa0899d"; # latest revision where nix/default.nix got modified
+>  }) { })
 > ```
 
 ## Configuration
 
-To configure namida with the home manager module, follow these steps:
+For further configuration, see [docs.md](docs.md) to know the available options
+for this module.
 
-1. Set programs.namida.settings.enable to true
+Here is an example on how you would configure namida through home manager:
 
-   ```nix
-   programs = {
-       namida = {
-           enable = true;
-           settings = {
-               enable = true;
-               # ...
-           };
-       };
-   };
-   ```
-
-   > [!NOTE]
-   > See [docs.md](docs.md) to know the available options for
-   > programs.namida.settings
+```nix
+programs.namida = {
+    enable = true;
+    settings = {
+        enable = true;
+        appearance.pitchBlack = true;
+        customization.blur = true;
+    };
+};
+```
 
 ## Credits
 

@@ -27,7 +27,7 @@ mkOption {
               ];
 
               default = "auto";
-              description = "Internet source to get lyrics from";
+              description = "Source to get lyrics from";
             };
 
             stretchDuration = mkOption {
@@ -57,7 +57,7 @@ mkOption {
                   "local"
                 ];
 
-                description = "Internet source to get albums images from";
+                description = "Source to get albums images from";
               };
 
               artists = mkOption {
@@ -67,7 +67,7 @@ mkOption {
                   "local"
                 ];
 
-                description = "Internet source to get artists images from";
+                description = "Source to get artists images from";
               };
             };
           };
