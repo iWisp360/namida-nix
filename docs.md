@@ -653,7 +653,9 @@ Type: str
 
 Default: `"none"`
 
-#### cfg.miniPlayer.customization
+#### cfg.customization.miniPlayer.customization
+
+Customization options for Namida miniplayer.
 
 #### cfg.customization.miniPlayer.customization.party
 
