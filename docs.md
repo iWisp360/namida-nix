@@ -37,6 +37,8 @@ Default: `false`
 
 ### programs.namida.icon
 
+Type: str
+
 One of
 
 - `"tired"`
@@ -56,8 +58,6 @@ One of
 > [!NOTE]
 > If you want to preview the icons, check out
 > [https://codeberg.org/iWisp360/namida-icons]
-
-Type: str
 
 Default: `"default"`
 
@@ -79,8 +79,7 @@ Default: `false`
 
 ### programs.namida.settingsRaw.config
 
-Define valida namida json keys here. Written to
-`~/.namida/namida_settings.json`.
+Define valid namida json keys here. Written to `~/.namida/namida_settings.json`.
 
 Type: Attribute Set
 
