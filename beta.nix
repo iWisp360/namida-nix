@@ -6,20 +6,20 @@
   ...
 }:
 let
-  buildId = "260324012";
-  version = "5.8.7-beta";
+  buildNumber = "260330235";
+  version = "5.9.0-beta";
 in
 callPackage ./common.nix {
   inherit ytSupport wpewebkit;
   src = fetchurl {
-    url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildId}/namida-v${version}${
+    url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildNumber}/namida-v${version}${
       if ytSupport then "_login" else ""
     }.linux.tar.gz";
     hash =
       if ytSupport then
-        "sha256-ldIXM3SCIUB3VnLYuCl7/xzokS65O28UdpmWhVkUJ3s="
+        "sha256-Nnhb3mYdUKhwUbjppeAIJqg//Iuflc5U3DPZw/oaVOA="
       else
-        "sha256-eQyTs11l8K8WF75RvAFKg+k77P32t2VUfRB2YJWFi9Y=";
+        "sha256-ShJrrV/KbxNNKvf3T/3jlTocWK0Wd9so3XaXJVT+Zf8=";
   };
 
   variant = "beta";
