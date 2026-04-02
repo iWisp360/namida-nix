@@ -35,7 +35,7 @@
             icon:
             pkgs.callPackage ./${variant}.nix {
               inherit icon wpewebkit;
-              ytSupport = true;
+              ytLoginSupport = true;
             }
           );
         in
@@ -66,12 +66,12 @@
         default = pkgs.callPackage ./default.nix { };
         beta = pkgs.callPackage ./beta.nix { };
         default-yt = pkgs.callPackage ./default.nix {
-          ytSupport = true;
+          ytLoginSupport = true;
           inherit wpewebkit;
         };
 
         beta-yt = pkgs.callPackage ./beta.nix {
-          ytSupport = true;
+          ytLoginSupport = true;
           inherit wpewebkit;
         };
       }

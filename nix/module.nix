@@ -16,14 +16,16 @@ in
   options.programs.namida = with lib; {
     enable = mkEnableOption "Namida";
     useBetaPackage = mkEnableOption "Namida Snapshots(Beta)";
-    ytSupport = mkEnableOption "Namida as a Youtube Client";
+    ytLoginSupport = mkEnableOption "Namida as a Youtube Client";
 
     package = mkOption {
       type = types.package;
       default =
         inputs.self.packages.${pkgs.stdenv.hostPlatform.system}."${
           if cfg.useBetaPackage then "beta" else "default"
-        }${if cfg.ytSupport then "-yt" else ""}${if cfg.icon == "default" then "" else "-${cfg.icon}"}";
+        }${if cfg.ytLoginSupport then "-yt" else ""}${
+          if cfg.icon == "default" then "" else "-${cfg.icon}"
+        }";
 
       description = "Namida package to use";
     };

@@ -27,7 +27,7 @@
   libwpe-fdo,
   at-spi2-core,
   fontconfig,
-  ytSupport,
+  ytLoginSupport,
   rustPlatform,
   ...
 }:
@@ -69,7 +69,7 @@ let
     fontconfig
     rhttp
   ]
-  ++ lib.optionals ytSupport [
+  ++ lib.optionals ytLoginSupport [
     libsecret
     libwpe-fdo
     wpewebkit
@@ -103,7 +103,7 @@ stdenv.mkDerivation {
     cp * $out -rv
     rm -rv $out/bin/*
     ${
-      if ytSupport then
+      if ytLoginSupport then
         ''
           rm -rv $out/lib/*wpe*
           rm -rv $out/lib/*WPE*
@@ -165,6 +165,6 @@ stdenv.mkDerivation {
       "x86_64-linux"
     ];
 
-    broken = ytSupport;
+    broken = ytLoginSupport;
   };
 }

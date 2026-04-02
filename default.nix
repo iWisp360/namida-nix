@@ -1,7 +1,7 @@
 {
   callPackage,
   fetchurl,
-  ytSupport ? false,
+  ytLoginSupport ? false,
   wpewebkit ? null,
   ...
 }:
@@ -10,10 +10,10 @@ let
   version = "5.8.7-beta";
   src = fetchurl {
     url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildNumber}/namida-v${version}${
-      if ytSupport then "_login" else ""
+      if ytLoginSupport then "_login" else ""
     }.linux.tar.gz";
     hash =
-      if ytSupport then
+      if ytLoginSupport then
         "sha256-ldIXM3SCIUB3VnLYuCl7/xzokS65O28UdpmWhVkUJ3s="
       else
         "sha256-eQyTs11l8K8WF75RvAFKg+k77P32t2VUfRB2YJWFi9Y=";
@@ -24,7 +24,7 @@ in
 callPackage ./common.nix {
   inherit
     version
-    ytSupport
+    ytLoginSupport
     wpewebkit
     variant
     src

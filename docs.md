@@ -23,14 +23,14 @@ Type: bool
 
 Default: `false`
 
-### programs.namida.ytSupport
+### programs.namida.ytLoginSupport
 
 Whether to install dependencies required for youtube(login) support, as well as
 a dedicated package for it. Youtube search still works even though login is
 disabled.
 
 > [!WARNING]
-> Currently, ytSupport is marked as broken.
+> Currently, ytLoginSupport is marked as broken.
 
 Type: bool
 
