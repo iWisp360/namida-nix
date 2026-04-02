@@ -10,6 +10,11 @@ Type: bool
 
 Default: `false`
 
+> [!NOTE]
+> Namida depends on libraries not packaged on nixpkgs. As such, I recommend
+> following [this guide](https://garnix.io/docs/ci/caching) to enable the Garnix
+> substituter on your `configuration.nix`.
+
 ### programs.namida.useBetaPackage
 
 Whether to install the very latest snapshot version, instead of `5.8.7-beta`.
@@ -21,12 +26,8 @@ Default: `false`
 ### programs.namida.ytSupport
 
 Whether to install dependencies required for youtube(login) support, as well as
-a dedicated package for it.
-
-> [!NOTE]
-> ytSupport depends on a library not packaged on nixpkgs(wpewebkit). As such, I
-> recommend following [this guide](https://garnix.io/docs/ci/caching) to enable
-> the Garnix substituter on your `configuration.nix`.
+a dedicated package for it. Youtube search still works even though login is
+disabled.
 
 > [!WARNING]
 > Currently, ytSupport is marked as broken.
