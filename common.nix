@@ -28,9 +28,27 @@
   at-spi2-core,
   fontconfig,
   ytSupport,
+  rustPlatform,
   ...
 }:
 let
+  rhttp =
+    let
+      src = fetchgit {
+        url = "https://codeberg.org/MSOB7YY/rhttp";
+        rev = "4e77fa272d944a28d5056605055857038c74adaf";
+        hash = "sha256-baXTcbI3AxsJiGfEz41VH/CJaekE9fikAauBgiA20U8=";
+      };
+
+      manifest = (lib.importTOML "${src}/rhttp/rust/Cargo.toml").package;
+    in
+    rustPlatform.buildRustPackage {
+      pname = manifest.name;
+      inherit (manifest) version;
+      src = src + "/rhttp/rust";
+      cargoLock.lockFile = "${src}/rhttp/rust/Cargo.lock";
+      RUSTFLAGS = "--cfg reqwest_unstable";
+    };
   deps = [
     mpv-unwrapped
     cairo
@@ -49,6 +67,7 @@ let
     makeWrapper
     at-spi2-core
     fontconfig
+    rhttp
   ]
   ++ lib.optionals ytSupport [
     libsecret
@@ -94,7 +113,7 @@ stdenv.mkDerivation {
         ""
     }
     ln -sv $out/namida $out/bin/namida
-
+    ln -sfv ${rhttp}/lib/librhttp.so $out/lib/librhttp.so
     ln -sv ${audiowaveform}/bin/audiowaveform $out/bin/audiowaveform
       
     mkdir -p $out/share/icons/hicolor/{128x128,256x256,512x512}/apps
