@@ -8,9 +8,6 @@
 let
   buildNumber = "260324012";
   version = "5.8.7-beta";
-in
-callPackage ./common.nix {
-  inherit ytSupport wpewebkit;
   src = fetchurl {
     url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildNumber}/namida-v${version}${
       if ytSupport then "_login" else ""
@@ -23,5 +20,13 @@ callPackage ./common.nix {
   };
 
   variant = "stable";
-  inherit version;
+in
+callPackage ./common.nix {
+  inherit
+    version
+    ytSupport
+    wpewebkit
+    variant
+    src
+    ;
 }

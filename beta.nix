@@ -6,22 +6,27 @@
   ...
 }:
 let
-  buildNumber = "260330235";
-  version = "5.9.0-beta";
-in
-callPackage ./common.nix {
-  inherit ytSupport wpewebkit;
+  buildNumber = "260331152";
+  version = "5.9.1-beta";
   src = fetchurl {
     url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildNumber}/namida-v${version}${
       if ytSupport then "_login" else ""
     }.linux.tar.gz";
     hash =
       if ytSupport then
-        "sha256-Nnhb3mYdUKhwUbjppeAIJqg//Iuflc5U3DPZw/oaVOA="
+        "sha256-yphTbAzX/akewb4ll55gGt/TgZe6rafmaP+hkctsXH4="
       else
-        "sha256-ShJrrV/KbxNNKvf3T/3jlTocWK0Wd9so3XaXJVT+Zf8=";
+        "sha256-jUEsAXAOJgxn0fi6DWgCIjFNmEbIRMSu4ge0sViU8wU=";
   };
 
   variant = "beta";
-  inherit version;
+in
+callPackage ./common.nix {
+  inherit
+    version
+    ytSupport
+    wpewebkit
+    variant
+    src
+    ;
 }
