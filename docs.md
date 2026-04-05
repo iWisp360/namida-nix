@@ -17,7 +17,7 @@ Default: `false`
 
 ### programs.namida.useBetaPackage
 
-Whether to install the very latest snapshot version, instead of `5.8.7-beta`.
+Whether to install the very latest snapshot version, instead of `5.9.4-beta`.
 
 Type: bool
 
