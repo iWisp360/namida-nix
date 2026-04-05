@@ -49,21 +49,6 @@
         wpewebkit = inputs.wpewebkit.packages.${pkgs.stdenv.hostPlatform.system}.default;
       in
       {
-        homeManagerModules.namida =
-          { config, osConfig, ... }:
-          import ./nix/module.nix {
-            inherit
-              config
-              pkgs
-              osConfig
-              inputs
-              ;
-
-            inherit (nixpkgs) lib;
-            inherit (pkgs) jq;
-            inherit (inputs) home-manager;
-          };
-
         packages = {
           default = pkgs.callPackage ./default.nix { };
           beta = pkgs.callPackage ./beta.nix { };
@@ -82,7 +67,28 @@
         // (mkIconYtPkgs "beta")
         // (mkIconYtPkgs "default");
       }
-    );
+    )
+    // {
+      homeManagerModules.namida =
+        {
+          config,
+          osConfig,
+          pkgs,
+          ...
+        }:
+        import ./nix/module.nix {
+          inherit
+            config
+            pkgs
+            osConfig
+            inputs
+            ;
+
+          inherit (nixpkgs) lib;
+          inherit (pkgs) jq;
+          inherit (inputs) home-manager;
+        };
+    };
 
   nixConfig = {
     extra-substituters = [ "https://cache.garnix.io" ];
