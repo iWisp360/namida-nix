@@ -115,6 +115,8 @@ stdenv.mkDerivation {
     ln -sv $out/namida $out/bin/namida
     ln -sfv ${rhttp}/lib/librhttp.so $out/lib/librhttp.so
     ln -sv ${audiowaveform}/bin/audiowaveform $out/bin/audiowaveform
+    ln -sv ${ffmpeg}/bin/ffmpeg $out/bin/ffmpeg
+    ln -sv ${ffmpeg}/bin/ffprobe $out/bin/ffprobe
       
     mkdir -p $out/share/icons/hicolor/{128x128,256x256,512x512}/apps
     rm $out/share/icons/namida.png
