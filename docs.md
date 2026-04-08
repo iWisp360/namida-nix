@@ -29,8 +29,13 @@ Whether to install dependencies required for youtube(login) support, as well as
 a dedicated package for it. Youtube search still works even though login is
 disabled.
 
-> [!WARNING]
-> Currently, ytLoginSupport is marked as broken.
+> [!NOTE]
+> If you are getting black screen instead of a google login page where prompted,
+> launch namida with this command to login to your google account:
+>
+> ```sh
+> LIBGL_ALWAYS_SOFTWARE=1 namida
+> ```
 
 Type: bool
 

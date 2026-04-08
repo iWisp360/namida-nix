@@ -62,7 +62,7 @@ module for configuration if you want to.
 > ```nix
 > (pkgs.callPackage (builtins.fetchGit { 
 >   url = "https://codeberg.org/iWisp360/namida-nix"; 
->   rev = "7d5825eab1ad44bb27951b1e7f97522ef7953c19"; # latest revision where nix/default.nix got modified
+>   rev = "2e439a23371b05fc8d94a7f6d503994382433d0d"; # latest revision where nix/default.nix got modified
 >  }) { })
 > ```
 
