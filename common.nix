@@ -28,7 +28,9 @@
   at-spi2-core,
   fontconfig,
   ytLoginSupport,
+  glib-networking,
   rustPlatform,
+  gst_all_1,
   ...
 }:
 let
@@ -67,12 +69,17 @@ let
     makeWrapper
     at-spi2-core
     fontconfig
+    glib-networking
     rhttp
   ]
   ++ lib.optionals ytLoginSupport [
     libsecret
     libwpe-fdo
     wpewebkit
+    gst_all_1.gst-plugins-good
+    gst_all_1.gst-plugins-bad
+    gst_all_1.gst-plugins-base
+    gst_all_1.gstreamer
   ];
 
   iconsUrl = "https://codeberg.org/iWisp360/namida-icons";
@@ -143,6 +150,8 @@ stdenv.mkDerivation {
     wrapProgram $out/bin/namida \
       --set FONTCONFIG_FILE "${fontconfig.out}/etc/fonts/fonts.conf" \
       --set FONTCONFIG_PATH "${fontconfig.out}/etc/fonts" \
+      --set GIO_EXTRA_MODULES "${glib-networking}/lib/gio/modules" \
+      --set GST_PLUGIN_SYSTEM_PATH_1_0 "${gst_all_1.gstreamer}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-good}/lib/gstreamer-1.0" \
       --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath deps}"
   '';
 
@@ -167,6 +176,6 @@ stdenv.mkDerivation {
       "x86_64-linux"
     ];
 
-    broken = ytLoginSupport;
+    broken = false;
   };
 }
