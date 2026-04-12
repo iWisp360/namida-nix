@@ -82,11 +82,10 @@ let
     gst_all_1.gstreamer
   ];
 
-  iconsUrl = "https://codeberg.org/iWisp360/namida-icons";
   icons = fetchgit {
-    url = "${iconsUrl}";
-    rev = "021b2f4f80e4752c5a38822b80db128931024ed5";
-    hash = "sha256-Q4Jd5n6aIfRakJTr+K7lrbOPADdiMz29InAkUwBoFac=";
+    url = "https://codeberg.org/iWisp360/namida-icons";
+    rev = "7e53df600c524a34cc3d0e06c7d136d0b5d505cc";
+    hash = "sha256-OfZwP6cvN4F8c/1tI4bMH+EsV9x39ycZNHbr6M7G7yQ=";
   };
 
 in

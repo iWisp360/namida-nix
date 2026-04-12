@@ -60,6 +60,9 @@ One of
 - `"eddy"`
 - `"cutsie"`
 - `"default"`
+- `"retro"`
+- `"pastel"`
+- `"ookami"`
 
 > [!NOTE]
 > If you want to preview the icons, check out

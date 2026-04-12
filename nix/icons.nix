@@ -11,4 +11,7 @@
   "enhanced"
   "eddy"
   "cutsie"
+  "ookami"
+  "pastel"
+  "retro"
 ]
