@@ -125,7 +125,7 @@ stdenv.mkDerivation {
     ln -sv ${ffmpeg}/bin/ffprobe $out/bin/ffprobe
       
     mkdir -p $out/share/icons/hicolor/{128x128,256x256,512x512}/apps
-    rm $out/share/icons/namida.png
+
     if [ "${icon}" = "default" ]; then
       mv $out/share/icons/namida_128.png $out/share/icons/hicolor/128x128/apps/namida.png
       mv $out/share/icons/namida_256.png $out/share/icons/hicolor/256x256/apps/namida.png
