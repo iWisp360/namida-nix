@@ -91,7 +91,9 @@
     };
 
   nixConfig = {
-    extra-substituters = [ "https://cache.garnix.io" ];
-    extra-trusted-public-keys = [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
+    extra-substituters = [ "https://namida-nix.cachix.org" ];
+    extra-trusted-public-keys = [
+      "namida-nix.cachix.org-1:0XnwdSaWlrvwOzckblOlUTqn67K9IXFVces5WFplANQ="
+    ];
   };
 }

@@ -6,17 +6,17 @@
   ...
 }:
 let
-  buildNumber = "260501142";
-  version = "6.0.6-beta";
+  buildNumber = "260802156";
+  version = "6.4.2-beta";
   src = fetchurl {
     url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildNumber}/namida-v${version}${
       if ytLoginSupport then "_login" else ""
     }.linux.tar.gz";
     hash =
       if ytLoginSupport then
-        "sha256-siXF+nM6wCHa5WQhgBDQEGnxhCYdPeQy7bJuBMpyQp8="
+        "sha256-f7OzwcNYmMDRwVKgMscgXt2q44Npwi5eGBbOjKyaIys="
       else
-        "sha256-d7Y31eBGE6rowY581Cx2XTGQsnF7Ob5ffCkjQMBYSCQ=";
+        "sha256-Gww11CBeNhZa08NjixPTmkP4gUajGIi363O8GZHKr5w=";
   };
 
   variant = "beta";

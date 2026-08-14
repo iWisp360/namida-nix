@@ -1,0 +1,37 @@
+name: "Build namida package and deps"
+
+on:
+  push:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        packages: [ "default", "beta", "default-yt", "beta-yt" ]
+
+    environment:
+      name: namida
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v17
+        with:
+          name: namida-nix
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          skipPush: false
+          useDaemon: true
+          pathsToPush: ""
+
+      - name: Check if auth token is present
+        run: |
+          if [ -n "${{ secrets.CACHIX_AUTH_TOKEN }}" ]; then
+            echo "Secret is present and loaded!"
+          else
+            echo "Secret is empty or missing!"
+            exit 1
+          fi
+
+      - run: nix build --accept-flake-config .#${{ matrix.packages }}
