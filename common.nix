@@ -151,7 +151,7 @@ stdenv.mkDerivation {
       --set FONTCONFIG_PATH "${fontconfig.out}/etc/fonts" \
       --set GIO_EXTRA_MODULES "${glib-networking}/lib/gio/modules" \
       --set GST_PLUGIN_SYSTEM_PATH_1_0 "${gst_all_1.gstreamer}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-good}/lib/gstreamer-1.0" \
-      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath deps}"
+      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath deps}:$out/lib"
   '';
 
   meta = {

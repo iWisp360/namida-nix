@@ -50,6 +50,7 @@
       in
       {
         packages = {
+          sqlite3 = pkgs.callPackage ./sqlite3mc.nix { };
           default = pkgs.callPackage ./default.nix { };
           beta = pkgs.callPackage ./beta.nix { };
           default-yt = pkgs.callPackage ./default.nix {
