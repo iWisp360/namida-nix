@@ -22,15 +22,13 @@
   src,
   libappindicator,
   libdbusmenu-gtk3,
-  libsecret,
-  wpewebkit ? null,
-  libwpe-fdo,
   at-spi2-core,
   fontconfig,
-  ytLoginSupport,
   glib-networking,
   rustPlatform,
   gst_all_1,
+  webkitgtk_4_1,
+  libsoup_3,
   ...
 }:
 let
@@ -71,15 +69,8 @@ let
     fontconfig
     glib-networking
     rhttp
-  ]
-  ++ lib.optionals ytLoginSupport [
-    libsecret
-    libwpe-fdo
-    wpewebkit
-    gst_all_1.gst-plugins-good
-    gst_all_1.gst-plugins-bad
-    gst_all_1.gst-plugins-base
-    gst_all_1.gstreamer
+    webkitgtk_4_1
+    libsoup_3
   ];
 
   icons = fetchgit {
@@ -108,33 +99,14 @@ stdenv.mkDerivation {
     mkdir -p $out/{bin,lib}
     cp * $out -rv
     rm -rv $out/bin/*
-    ${
-      if ytLoginSupport then
-        ''
-          rm -rv $out/lib/*wpe*
-          rm -rv $out/lib/*WPE*
-          rm -rv $out/lib/MiniBrowser
-        ''
-      else
-        ""
-    }
+
     ln -sv $out/namida $out/bin/namida
     ln -sfv ${rhttp}/lib/librhttp.so $out/lib/librhttp.so
     ln -sv ${audiowaveform}/bin/audiowaveform $out/bin/audiowaveform
     ln -sv ${ffmpeg}/bin/ffmpeg $out/bin/ffmpeg
     ln -sv ${ffmpeg}/bin/ffprobe $out/bin/ffprobe
       
-    mkdir -p $out/share/icons/hicolor/{128x128,256x256,512x512}/apps
-
-    if [ "${icon}" = "default" ]; then
-      mv $out/share/icons/namida_128.png $out/share/icons/hicolor/128x128/apps/namida.png
-      mv $out/share/icons/namida_256.png $out/share/icons/hicolor/256x256/apps/namida.png
-      mv $out/share/icons/namida_512.png $out/share/icons/hicolor/512x512/apps/namida.png
-    else
-      rm $out/share/icons/namida_128.png
-      rm $out/share/icons/namida_256.png
-      rm $out/share/icons/namida_512.png
-
+    if ! [ "${icon}" = "default" ]; then
       unar ${icons}/${icon}.tar.xz
 
       mv ${icon}/namida_icon_${icon}.128.png $out/share/icons/hicolor/128x128/apps/namida.png

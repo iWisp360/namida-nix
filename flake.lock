@@ -67,27 +67,11 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1774304105,
-        "narHash": "sha256-GcoIHdkDwp4Bwwc3cxQXTMYJtw19zDy0PN/l52ZGvFA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "d13b002d18fb43ad47b7e0d6e0b70f1aa5f34711",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2",
-        "wpewebkit": "wpewebkit"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "systems": {
@@ -102,24 +86,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "wpewebkit": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_3"
-      },
-      "locked": {
-        "lastModified": 1774334462,
-        "narHash": "sha256-r+MEwMiJYsBs4i3n7rgPwQVC/KDEoVoO5NixFqziYDs=",
-        "owner": "iWisp360",
-        "repo": "wpewebkit",
-        "rev": "8d1b63a9c7f7679b75056f3f19dd4a0e4dec9ff2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "iWisp360",
-        "repo": "wpewebkit",
         "type": "github"
       }
     }

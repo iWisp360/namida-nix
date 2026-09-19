@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
-    wpewebkit.url = "github:iWisp360/wpewebkit";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -29,44 +28,14 @@
             name = "${variant}-${name}";
             inherit value;
           }) pkgSet;
-
-        mkIconYtPkgs =
-          variant:
-          let
-            pkgSet = lib.genAttrs icons (
-              icon:
-              pkgs.callPackage ./${variant}.nix {
-                inherit icon wpewebkit;
-                ytLoginSupport = true;
-              }
-            );
-          in
-          lib.mapAttrs' (name: value: {
-            name = "${variant}-yt-${name}";
-            inherit value;
-          }) pkgSet;
-
-        wpewebkit = inputs.wpewebkit.packages.${pkgs.stdenv.hostPlatform.system}.default;
       in
       {
         packages = {
-          sqlite3 = pkgs.callPackage ./sqlite3mc.nix { };
           default = pkgs.callPackage ./default.nix { };
           beta = pkgs.callPackage ./beta.nix { };
-          default-yt = pkgs.callPackage ./default.nix {
-            ytLoginSupport = true;
-            inherit wpewebkit;
-          };
-
-          beta-yt = pkgs.callPackage ./beta.nix {
-            ytLoginSupport = true;
-            inherit wpewebkit;
-          };
         }
         // (mkIconPkgs "beta")
-        // (mkIconPkgs "default")
-        // (mkIconYtPkgs "beta")
-        // (mkIconYtPkgs "default");
+        // (mkIconPkgs "default");
       }
     )
     // {
