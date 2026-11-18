@@ -98,14 +98,15 @@ stdenv.mkDerivation {
 
     mkdir -p $out/{bin,lib}
     cp * $out -rv
-    rm -rv $out/bin/*
+
+    ${if variant == "beta" then "" else "rm -rv $out/bin/*"}
 
     ln -sv $out/namida $out/bin/namida
     ln -sfv ${rhttp}/lib/librhttp.so $out/lib/librhttp.so
     ln -sv ${audiowaveform}/bin/audiowaveform $out/bin/audiowaveform
     ln -sv ${ffmpeg}/bin/ffmpeg $out/bin/ffmpeg
     ln -sv ${ffmpeg}/bin/ffprobe $out/bin/ffprobe
-      
+
     if ! [ "${icon}" = "default" ]; then
       unar ${icons}/${icon}.tar.xz
 
