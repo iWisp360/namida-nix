@@ -14,4 +14,7 @@
   "ookami"
   "pastel"
   "retro"
+  "tetoda"
+  "kyunda"
+  "jellyda"
 ]
