@@ -8,7 +8,46 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        packages: [ "default", "beta", "default-yt", "beta-yt" ]
+        packages: [
+          "beta",
+          "beta-cutsie",
+          "beta-eddy",
+          "beta-enhanced",
+          "beta-glowy",
+          "beta-hollow",
+          "beta-jellyda",
+          "beta-kyunda",
+          "beta-namichin",
+          "beta-namiween",
+          "beta-ookami",
+          "beta-original",
+          "beta-pastel",
+          "beta-retro",
+          "beta-shade",
+          "beta-space",
+          "beta-spooky",
+          "beta-tetoda",
+          "beta-tired",
+          "default",
+          "default-cutsie",
+          "default-eddy",
+          "default-enhanced",
+          "default-glowy",
+          "default-hollow",
+          "default-jellyda",
+          "default-kyunda",
+          "default-namichin",
+          "default-namiween",
+          "default-ookami",
+          "default-original",
+          "default-pastel",
+          "default-retro",
+          "default-shade",
+          "default-space",
+          "default-spooky",
+          "default-tetoda",
+          "default-tired",
+        ]
 
     environment:
       name: namida
