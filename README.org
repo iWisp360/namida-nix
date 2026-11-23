@@ -69,7 +69,7 @@ all, you can add this to your packages
 
 ** Configuration
 
-For further configuration, see [[file:docs.md][docs.md]] to know the available options for this
+For further configuration, see [[./docs.org][docs.org]] to know the available options for this
 module.
 
 Here is an example on how you would configure namida through home manager:
