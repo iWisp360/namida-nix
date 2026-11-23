@@ -4,11 +4,10 @@
   ...
 }:
 let
-  buildNumber = "260919170";
-  version = "7.1.2-beta";
+  version = "8.6.7";
   src = fetchurl {
-    url = "https://github.com/namidaco/namida-snapshots/releases/download/${version}%2B${buildNumber}/namida-v${version}.linux.tar.gz";
-    hash = "sha256-nOtumEm9dTV5bQBq/e3JsIi4f871a2Eg6LXI4Gp3DgI=";
+    url = "https://github.com/namidaco/namida/releases/download/v${version}/namida-v${version}.linux.tar.gz";
+    hash = "sha256-jK25vXgHUWd9Aeq9Msc9dOfakVNSf7d3U8Qy6XEQ2u4=";
   };
 
   variant = "stable";

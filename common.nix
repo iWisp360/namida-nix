@@ -36,8 +36,8 @@ let
     let
       src = fetchgit {
         url = "https://codeberg.org/MSOB7YY/rhttp";
-        rev = "4e77fa272d944a28d5056605055857038c74adaf";
-        hash = "sha256-baXTcbI3AxsJiGfEz41VH/CJaekE9fikAauBgiA20U8=";
+        rev = "7a0fb576c7dc916e3671e164aec0c4bcf919bc08";
+        hash = "sha256-d6TTr8MSDnIX7KT0ouEnUIYfoQvtEpeL1gffolXQvhE=";
       };
 
       manifest = (lib.importTOML "${src}/rhttp/rust/Cargo.toml").package;
@@ -98,8 +98,6 @@ stdenv.mkDerivation {
 
     mkdir -p $out/{bin,lib}
     cp * $out -rv
-
-    ${if variant == "beta" then "" else "rm -rv $out/bin/*"}
 
     ln -sv $out/namida $out/bin/namida
     ln -sfv ${rhttp}/lib/librhttp.so $out/lib/librhttp.so
