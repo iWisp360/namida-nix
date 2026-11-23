@@ -60,9 +60,9 @@ module for configuration if you want to.
 > all, you can add this to your packages
 >
 > ```nix
-> (pkgs.callPackage (builtins.fetchGit { 
->   url = "https://codeberg.org/iWisp360/namida-nix"; 
->   rev = "2e439a23371b05fc8d94a7f6d503994382433d0d"; # latest revision where nix/default.nix got modified
+> (pkgs.callPackage (builtins.fetchGit {
+>   url = "https://codeberg.org/iWisp360/namida-nix";
+>   rev = "f64a633de773a826b11c8d1ffe72bfb17bb62619"; # latest revision where nix/default.nix got modified
 >  }) { })
 > ```
 
