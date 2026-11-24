@@ -16,7 +16,7 @@
   dbus,
   lib,
   unar,
-  icon ? "default",
+  icon,
   variant,
   version,
   src,
@@ -75,10 +75,9 @@ let
 
   icons = fetchgit {
     url = "https://codeberg.org/iWisp360/namida-icons";
-    rev = "7e53df600c524a34cc3d0e06c7d136d0b5d505cc";
-    hash = "sha256-OfZwP6cvN4F8c/1tI4bMH+EsV9x39ycZNHbr6M7G7yQ=";
+    rev = "b1619fe8ae9af791249647b6e11f009b711484a0";
+    hash = "sha256-rvf0Jc70CCO3b2hJUV9eEOitbHSHkcAGsikwgYIXQCY=";
   };
-
 in
 stdenv.mkDerivation {
   name = "namida${if icon != "default" then "-${icon}" else ""}-${variant}";

@@ -1,6 +1,7 @@
 {
   callPackage,
   fetchurl,
+  icon ? "default",
   ...
 }:
 let
@@ -17,5 +18,6 @@ callPackage ./common.nix {
     version
     variant
     src
+    icon
     ;
 }
